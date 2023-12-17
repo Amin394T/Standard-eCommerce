@@ -1,0 +1,4 @@
+.filtersBar {
+    border: solid 1px black;
+    flex-grow: 1;
+}

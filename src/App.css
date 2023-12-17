@@ -2,10 +2,12 @@
     background-color: rgb(245, 245, 245);
 }
 
-body {
+html, body, #root {
     margin: 0;
+    height: 100%;
 }
 
-.siteBody {
-    display: inline;
+.productSearch {
+    display: flex;
+    height: 85%;
 }

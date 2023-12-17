@@ -2,7 +2,7 @@ import "./Filters.css"
 
 function Filters() {
   return (
-    <div>Filters</div>
+    <div className="filtersBar">Filters</div>
   )
 }
 

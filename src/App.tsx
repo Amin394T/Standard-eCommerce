@@ -9,7 +9,7 @@ function App() {
     <>
       <Navigation />
       <Categories />
-      <div className="siteBody">
+      <div className="productSearch">
         <Filters />
         <ProductsList />
       </div>
