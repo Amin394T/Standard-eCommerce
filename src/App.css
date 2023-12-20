@@ -9,5 +9,6 @@ html, body, #root {
 
 .productSearch {
     display: flex;
+    flex-wrap: wrap;
     height: 85%;
 }

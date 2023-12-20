@@ -1,4 +1,22 @@
 .filtersBar {
     border: solid 1px black;
-    flex-grow: 1;
+    max-width: 250px;
+}
+
+.filter {
+    margin: 5%;
+}
+
+.priceFilter > label,
+.scoreFilter > label {
+    display: block;
+}
+
+.typeFilter {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.typeFilter > p {
+    flex-basis: 100%;
 }
