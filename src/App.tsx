@@ -4,6 +4,7 @@ import Filters from "./components/Filters/Filters";
 import Categories from "./components/Categories/Categories";
 import ProductsList from "./components/ProductsList/ProductsList";
 
+
 function App() {
   return (
     <>

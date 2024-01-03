@@ -1,4 +1,27 @@
 .productsList {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    overflow-y: scroll;
+    width: 100%;
+    padding: 30px;
+}
+
+.flexBreak {
+    flex-basis: 100%;
+}
+
+.pagination > * {
+    width: 60px;
+    height: 30px;
+    margin: 10px;
+}
+
+.pagination {
+    padding-top: 40px;
+}
+
+.productsList {
     border: solid 1px black;
-    flex-grow: 1;
 }

@@ -4,6 +4,11 @@ function Filters() {
   return (
     <div className="filtersBar">
 
+      <div className="filter searchName">
+        <p> Search By Name : </p>
+        <input type="text" placeholder=" Search ..." />
+      </div>
+
       <div className="filter orderBy">
         <p> Order By : </p>
         <select name="order">
@@ -17,8 +22,8 @@ function Filters() {
 
       <div className="filter priceFilter">
         <p> Price Range : </p>
-        <label> Minimum : <input type="range" min="1" max="100" value="50"/> </label>
-        <label> Maximum : <input type="range" min="1" max="100" value="50"/> </label>
+        <label> Min :&nbsp;<input type="range" min="0" max="1000" value="0"/> </label>
+        <label> Max :&nbsp;<input type="range" min="0" max="1000" value="1000"/> </label>
       </div>
       
       <div className="filter typeFilter">

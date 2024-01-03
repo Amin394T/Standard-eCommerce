@@ -1,0 +1,10 @@
+.productCard {
+    width: 280px;
+    height: 320px;
+    margin: 20px;
+}
+
+.productCard {
+    border: solid 1px black;
+    text-align: center;
+}
