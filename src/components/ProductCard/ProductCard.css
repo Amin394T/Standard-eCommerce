@@ -2,9 +2,34 @@
     width: 280px;
     height: 320px;
     margin: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.productCard {
+.productCard > * {
+    margin: 5px;
+}
+
+.productImage {
+    height: 240px;
+}
+
+.productTitle {
+    font-size: 20px;
+}
+
+.productPrice > * {
+    display: inline;
+    margin: 0 10%;
+}
+
+.productPrice > button {
+    height: 30px;
+    width: 100px;
+}
+
+.productCard,
+.productImage {
     border: solid 1px black;
-    text-align: center;
 }

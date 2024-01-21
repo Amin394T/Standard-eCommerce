@@ -1,6 +1,6 @@
-import "./Navigation.css";
+import "./navigationBar.css";
 
-function Navigation() {
+function navigationBar() {
   return (
     <div className="navigationBar">
 
@@ -17,4 +17,4 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+export default navigationBar;
