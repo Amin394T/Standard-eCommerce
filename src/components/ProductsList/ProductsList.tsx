@@ -8,7 +8,7 @@ function ProductsList() {
     <div className="productsList">
       
       { [...Array(productsNumber).keys()].map(
-          (product) => <ProductCard key={product} />
+          (product) => <ProductCard key={product.toString()} name={"Product " + product.toString()} />
       ) }
 
       <div className="flexBreak"> </div>
