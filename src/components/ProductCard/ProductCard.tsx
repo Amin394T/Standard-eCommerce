@@ -1,14 +1,15 @@
-import "./ProductCard.css";
+import "./ProductCard.css"
 
 type ProductCardProps = {
-  name: string;
-};
-
-function handleClick(name: string) {
-  console.log(`${name} was added to cart!`);
+  name: string
 }
 
 function ProductCard({ name }: ProductCardProps) {
+
+  const handleClick = (name: string) => {
+    console.log(`${name} was added to cart!`)
+  }
+
   return (
     <div className="productCard">
       <img className="productImage" src="" alt="PRODUCT" />
@@ -18,7 +19,8 @@ function ProductCard({ name }: ProductCardProps) {
         <button onClick={() => handleClick(name)}>BUY</button>
       </span>
     </div>
-  );
+  )
+
 }
 
-export default ProductCard;
+export default ProductCard

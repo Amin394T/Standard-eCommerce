@@ -1,6 +1,6 @@
-import "./navigationBar.css";
+import "./NavigationBar.css";
 
-function navigationBar() {
+function navigationBar({ toggleCartShown }: { toggleCartShown: () => void}) {
   return (
     <div className="navigationBar">
 
@@ -9,7 +9,7 @@ function navigationBar() {
       <input className="searchBar" type="text" placeholder=" Search ..." />
 
       <div className="headerButtons">
-        <img className="cartButton" src="" alt="CART" />
+        <img onClick={toggleCartShown} className="cartButton" src="" alt="CART" />
         <img className="userButton" src="" alt="USER" />
       </div>
 

@@ -5,9 +5,10 @@
 html, body, #root {
     margin: 0;
     height: 100%;
+    font-family: Cantarelle, Calibri, Arial;
 }
 
-.productSearch {
+.mainSection {
     display: flex;
     height: calc(100% - 115px);
 }
