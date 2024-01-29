@@ -1,6 +1,6 @@
 import { PropsWithChildren, createContext, useState } from "react"
 
-export type CartItem = {
+type CartItem = {
    reference: string
    name: string
    quantity: number
@@ -22,7 +22,7 @@ function CartProvider({ children }: PropsWithChildren) {
    const [cart, updateCart] = useState<CartItem[]>([])
 
    let addToCart = (product: CartItem): void => {
-      const productIndex = cart.findIndex(item => item === product)
+      const productIndex = cart.findIndex(item => item.reference === product.reference)
 
       const newCart = [...cart]
       if (productIndex != -1) {
@@ -32,20 +32,18 @@ function CartProvider({ children }: PropsWithChildren) {
       else {
          updateCart([...newCart, product])
       }
-      console.log(cart)
    }
 
    let removeFromCart = (product: CartItem): void => {
-      const productIndex = cart.findIndex(item => item === product)
+      const productIndex = cart.findIndex(item => item.reference === product.reference)
 
       if (productIndex != -1) {
          const newCart = [...cart]
          newCart[productIndex].quantity <= 1 ?
-            newCart.splice(productIndex) :
+            newCart.splice(productIndex, 1) :
             newCart[productIndex].quantity--
          updateCart(newCart)
       }
-      console.log(cart)
    }
 
    return (

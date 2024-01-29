@@ -1,3 +1,4 @@
+import "./Cart.css"
 import { useContext } from "react"
 import { CartContext } from "../../utils/context/CartContext"
 
@@ -5,7 +6,7 @@ function Cart() {
   const product1 = {
     reference: '7DN02Z9S',
     name: 'ThinkPad Laptop',
-    quantity: 2,
+    quantity: 1,
     price: 360
   }
   const product2 = {
@@ -18,14 +19,15 @@ function Cart() {
   const { cart, addToCart, removeFromCart } = useContext(CartContext)
 
   return (
-    <>
-      <div>{cart.map(product => product.name)}</div>
+    <div className="cart">
+      {cart.map(product => <div> {product.name} x{product.quantity} </div>)}
+
       <button onClick={() => addToCart(product1)}>Add Product 1</button>
       <button onClick={() => removeFromCart(product1)}>Remove Product 1</button>
       <br/>
       <button onClick={() => addToCart(product2)}>Add Product 2</button>
       <button onClick={() => removeFromCart(product2)}>Remove Product 2</button>
-    </>
+    </div>
   )
 }
 

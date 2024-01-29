@@ -5,18 +5,22 @@ import Categories from "./components/Categories/Categories"
 import ProductsList from "./components/ProductsList/ProductsList"
 import Cart from "./components/Cart/Cart"
 import CartProvider from "./utils/context/CartContext"
+import { useState } from "react"
 
 function App() {
+  const [cartShown, updateCartShown] = useState(false)
+  let toggleCartShown = () => { updateCartShown(!cartShown) }
+
   return (
     <>
       <CartProvider>
-        <NavigationBar />
+        <NavigationBar {...{ toggleCartShown }} />
         <Categories />
         <div className="mainSection">
           <Filters />
           <ProductsList />
         </div>
-        <Cart />
+        {cartShown && <Cart />}
       </CartProvider>
     </>
   )
