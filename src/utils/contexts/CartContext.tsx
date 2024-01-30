@@ -1,6 +1,6 @@
 import { PropsWithChildren, createContext, useState } from "react"
 
-type CartItem = {
+export type CartItem = {
    reference: string
    name: string
    quantity: number
@@ -26,10 +26,11 @@ function CartProvider({ children }: PropsWithChildren) {
 
       const newCart = [...cart]
       if (productIndex != -1) {
-         newCart[productIndex].quantity++
+         newCart[productIndex].quantity += product.quantity
          updateCart(newCart)
       }
       else {
+         product.quantity = 1
          updateCart([...newCart, product])
       }
    }
