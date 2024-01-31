@@ -1,22 +1,19 @@
 import "./ProductCard.css"
+import { useContext } from "react"
+import { CartContext, CartItem } from "../../utils/contexts/CartContext"
 
-type ProductCardProps = {
-  name: string
-}
+function ProductCard({ product }: { product: CartItem }) {
+  const { addToCart } = useContext(CartContext)
 
-function ProductCard({ name }: ProductCardProps) {
-
-  const handleClick = (name: string) => {
-    console.log(`${name} was added to cart!`)
-  }
+  //TODO: dynamic quantity
 
   return (
     <div className="productCard">
-      <img className="productImage" src="" alt="PRODUCT" />
-      <div className="productTitle">{name}</div>
+      <img className="productImage" src={product.image} alt="PRODUCT" />
+      <div className="productTitle">{product.name}</div>
       <span className="productPrice">
-        <div>0000$</div>
-        <button onClick={() => handleClick(name)}>BUY</button>
+        <div>{product.price}$</div>
+        <button onClick={() => addToCart({ ...product, quantity: 1 })}>BUY</button>
       </span>
     </div>
   )

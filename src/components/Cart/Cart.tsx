@@ -1,32 +1,21 @@
 import "./Cart.css"
 import { useContext } from "react"
-import { CartContext } from "../../utils/context/CartContext"
+import { CartContext } from "../../utils/contexts/CartContext"
 
 function Cart() {
-  const product1 = {
-    reference: '7DN02Z9S',
-    name: 'ThinkPad Laptop',
-    quantity: 1,
-    price: 360
-  }
-  const product2 = {
-    reference: 'C932KZ1X',
-    name: 'Dell Full HD Screen',
-    quantity: 1,
-    price: 120
-  }
-
   const { cart, addToCart, removeFromCart } = useContext(CartContext)
+
+  //TODO: quantity as field + remove item
 
   return (
     <div className="cart">
-      {cart.map(product => <div> {product.name} x{product.quantity} </div>)}
-
-      <button onClick={() => addToCart(product1)}>Add Product 1</button>
-      <button onClick={() => removeFromCart(product1)}>Remove Product 1</button>
-      <br/>
-      <button onClick={() => addToCart(product2)}>Add Product 2</button>
-      <button onClick={() => removeFromCart(product2)}>Remove Product 2</button>
+      {cart.map(product =>
+        <div key={product.reference}>
+          {product.name} x{product.quantity}
+          &nbsp;<button onClick={() => addToCart({ ...product, quantity: 1 })}>Add</button>
+          &nbsp;<button onClick={() => removeFromCart({ ...product })}>Remove</button>
+        </div>
+      )}
     </div>
   )
 }

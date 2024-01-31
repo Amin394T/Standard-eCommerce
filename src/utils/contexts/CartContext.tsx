@@ -1,10 +1,11 @@
 import { PropsWithChildren, createContext, useState } from "react"
 
-type CartItem = {
+export type CartItem = {
    reference: string
    name: string
    quantity: number
    price: number
+   image: string
 }
 
 export const CartContext = createContext<{
@@ -26,7 +27,7 @@ function CartProvider({ children }: PropsWithChildren) {
 
       const newCart = [...cart]
       if (productIndex != -1) {
-         newCart[productIndex].quantity++
+         newCart[productIndex].quantity += product.quantity
          updateCart(newCart)
       }
       else {

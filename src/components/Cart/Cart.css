@@ -5,7 +5,8 @@
   top: 0;
   width: 50%;
   height: 80%;
-  margin: 10% 25%;
+  margin: 100px 25%;
+  padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
   border: solid 1px black;
 }
