@@ -5,6 +5,7 @@ export type CartItem = {
    name: string
    quantity: number
    price: number
+   image: string
 }
 
 export const CartContext = createContext<{
@@ -30,7 +31,6 @@ function CartProvider({ children }: PropsWithChildren) {
          updateCart(newCart)
       }
       else {
-         product.quantity = 1
          updateCart([...newCart, product])
       }
    }
