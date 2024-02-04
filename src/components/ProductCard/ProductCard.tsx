@@ -1,11 +1,10 @@
 import "./ProductCard.css"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { CartContext, CartItem } from "../../utils/contexts/CartContext"
 
 function ProductCard({ product }: { product: CartItem }) {
   const { addToCart } = useContext(CartContext)
-
-  //TODO: dynamic quantity
+  const [quantity, setQuantity] = useState(1)
 
   return (
     <div className="productCard">
@@ -13,7 +12,10 @@ function ProductCard({ product }: { product: CartItem }) {
       <div className="productTitle">{product.name}</div>
       <span className="productPrice">
         <div>{product.price}$</div>
-        <button onClick={() => addToCart({ ...product, quantity: 1 })}>BUY</button>
+        <span>
+          <input className="quantityInput" type="number" defaultValue="1" onChange={(e) => setQuantity(Number(e.target.value))} />
+          <button onClick={() => addToCart(product, quantity)}>BUY</button>
+        </span>
       </span>
     </div>
   )

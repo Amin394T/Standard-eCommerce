@@ -8,7 +8,7 @@ const productsNumber = 32;
 function ProductsList() {
   const { data, loading } = useFetch<CartItem[]>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products')
 
-  if (loading) return <div>Loading ...</div>
+  if (loading) return <div className="loadingSpinner">Loading ...</div>
   return (
     <div className="productsList">
 
