@@ -1,14 +1,16 @@
 :root {
-    background-color: rgb(245, 245, 245);
+  background-color: rgb(245, 245, 245);
 }
 
-html, body, #root {
-    margin: 0;
-    height: 100%;
-    font-family: Cantarelle, Calibri, Arial;
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  font-family: Cantarelle, Calibri, Arial;
 }
 
 .mainSection {
-    display: flex;
-    height: calc(100% - 115px);
+  display: flex;
+  height: calc(100% - 115px);
 }
