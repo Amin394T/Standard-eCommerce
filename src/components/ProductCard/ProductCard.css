@@ -29,11 +29,11 @@
   width: 80px;
 }
 
+.loadingSpinner {
+  margin: auto;
+}
+
 .productCard,
 .productImage {
   border: solid 1px black;
-}
-
-.loadingSpinner {
-  margin: auto;
 }

@@ -20,19 +20,18 @@ function App() {
       <NavigationBar {...{ toggleCartShown }} />
       <Categories />
 
-      <div className="mainSection">
-        <Routes>
-          <Route path="/" element={<> <Filters /> <ProductsList /> </>} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="*" element={<h1>NOT FOUND</h1>} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<div className="listPage"> <Filters /> <ProductsList /> </div>} />
+        <Route path="/product/:id" element={<div className="detailsPage"> <ProductDetails /> </div>} />
+        <Route path="*" element={<h1>NOT FOUND</h1>} />
+      </Routes>
 
       {cartShown && <Cart />}
-    </CartProvider>
+    </CartProvider >
 
   )
 }
 
 export default App
-// https://youtu.be/Ul3y1LXxzdU
+
+// Router Tutorial https://youtu.be/Ul3y1LXxzdU

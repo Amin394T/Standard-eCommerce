@@ -1,0 +1,25 @@
+.productDetails {
+  display: flex;
+  justify-content: space-between;
+  height: 90%;
+}
+
+.imagesSection {
+  width: 30vw;
+}
+
+.detailsSection {
+  width: 50vw;
+}
+
+.purchaseSection {
+  width: 20vw;
+}
+
+.imagesSection,
+.detailsSection,
+.purchaseSection,
+.similarProducts,
+.productReviews {
+  border: solid 1px black;
+}
