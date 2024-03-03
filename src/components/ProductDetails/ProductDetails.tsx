@@ -2,46 +2,66 @@ import "./ProductDetails.css"
 import { useParams } from "react-router-dom"
 import { CartItem } from "../../utils/contexts/CartContext"
 import useFetch from "../../utils/hooks/useFetch"
+import ProductCard from "../ProductCard/ProductCard"
+import { useState } from "react"
 
 function ProductDetails() {
   const { id } = useParams()
   const { data } = useFetch<CartItem>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products/' + id)
-  console.log(data)
+
+  const images = [
+    data?.image,
+    data?.image,
+    data?.image
+  ]
+  const [selectedImage, setSelectedImage] = useState(images[0])
+
+  let handleImageClick = (image: string | undefined) => {
+    setSelectedImage(image)
+  }
+
   return (
     <>
-      <div className="productDetails">
+      <div className="primaryRow">
         <div className="imagesSection">
-          <img className="focusedImage" />
-          <div className="otherImages">
-            <img className="unfocusedImage"></img>
+
+          <img src={selectedImage || data?.image} alt="Selected Image" />
+
+          <div className="imageGallery">
+            {images.map((image, index) => (
+              <img key={index} src={image} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} />
+            ))} 
           </div>
         </div>
 
         <div className="detailsSection">
-          <div className="title"></div>
+          <div className="title">{data?.name}</div>
+          <div className="category"></div>
           <div className="description"></div>
-          <div className="specifications"></div>
         </div>
 
         <div className="purchaseSection">
-          <div className="priceInfo"></div>
-          <div className="purchaseButtons"></div>
-          <div className="sellerInfo"></div>
+          <div className="price"></div>
+          <div className="deliveryInfo"></div>
+          <div className="purchaseButton"></div>
         </div>
       </div>
 
-      <div className="similarProducts">
-        <div>{data && data.name}</div>
-      </div>
 
-      <div className="productReviews">
+      <div className="secondaryRow">
         <div className="overallScore"></div>
-        <div className="commentsSection">
+
+        <div className="reviewsSection">
           <div className="comment">
             <input className="userScore"></input>
           </div>
         </div>
+
+        <div className="relatedProducts">
+          {/* <ProductCard /> */}
+        </div>
       </div>
+
     </>
   )
 }
