@@ -1,13 +1,16 @@
 import "./ProductDetails.css"
 import { useParams } from "react-router-dom"
-import { CartItem } from "../../utils/contexts/CartContext"
+import { CartContext, CartItem } from "../../utils/contexts/CartContext"
+import { useContext, useState } from "react"
 import useFetch from "../../utils/hooks/useFetch"
-import ProductCard from "../ProductCard/ProductCard"
-import { useState } from "react"
+//import ProductCard from "../ProductCard/ProductCard"
+
 
 function ProductDetails() {
   const { id } = useParams()
   const { data } = useFetch<CartItem>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products/' + id)
+  const { addToCart } = useContext(CartContext)
+  const [quantity, setQuantity] = useState(1)
 
   const images = [
     data?.image,
@@ -51,9 +54,13 @@ function ProductDetails() {
         </div>
 
         <div className="purchaseSection">
-          <div className="price"></div>
-          <div className="deliveryInfo"></div>
-          <div className="purchaseButton"></div>
+          <span className="price">{data?.price}$</span>
+          <span className="discount">-20%</span>
+          <div className="deliveryInfo">5$ Delivery Fees, Available Nationally, Delivered in 3 Days Maximum.</div>
+          <span className="stockStatus">In Stock</span>
+
+          <input className="quantityInput" type="number" defaultValue="1" onChange={(e) => setQuantity(Number(e.target.value))} />
+          <button onClick={() => data && addToCart(data, quantity)}>BUY</button>
         </div>
       </div>
 
