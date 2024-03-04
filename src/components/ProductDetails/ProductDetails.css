@@ -1,0 +1,105 @@
+.primaryRow {
+  display: flex;
+  justify-content: space-between;
+  min-height: 90%;
+}
+
+.imagesSection {
+  width: 35vw;
+}
+
+.imagesSection > img {
+  max-width: 90%;
+  margin: 5%;
+  margin-top: 50px;
+}
+
+.imageGallery {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.imageGallery > img {
+  max-width: 50px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.detailsSection {
+  width: 50vw;
+}
+
+.detailsSection > .title {
+  padding: 15px;
+  padding-bottom: 5px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.detailsSection > .category {
+  font-size: 13.5px;
+  padding-left: 15px;
+}
+
+.detailsSection > .description {
+  font-size: 15px;
+  padding: 20px;
+  text-align: justify;
+}
+
+.purchaseSection {
+  width: 15vw;
+  padding: 50px 10px;
+  text-align: center;
+}
+
+.purchaseSection > .price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.purchaseSection > .discount {
+  color: #ff0000;
+  padding-left: 5px;
+  font-size: 15px;
+}
+
+.purchaseSection > .deliveryInfo {
+  margin: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.purchaseSection > .stockStatus {
+  font-weight: bold;
+  color: #008000;
+  padding: 15px;
+}
+
+.secondaryRow {
+  display: flex;
+}
+
+.primaryRow > *,
+.secondaryRow > * {
+  border: solid 1px black;
+}
+
+.detailsSection > table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 10px;
+}
+
+.detailsSection th,
+.detailsSection td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.detailsSection th {
+  background-color: #f2f2f2;
+}
