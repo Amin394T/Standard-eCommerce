@@ -30,6 +30,24 @@
   width: 50vw;
 }
 
+.detailsSection > .title {
+  padding: 15px;
+  padding-bottom: 5px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.detailsSection > .category {
+  font-size: 13.5px;
+  padding-left: 15px;
+}
+
+.detailsSection > .description {
+  font-size: 15px;
+  padding: 20px;
+  text-align: justify;
+}
+
 .purchaseSection {
   width: 20vw;
 }
@@ -41,4 +59,21 @@
 .primaryRow > *,
 .secondaryRow > * {
   border: solid 1px black;
+}
+
+.detailsSection > table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 10px;
+}
+
+.detailsSection th,
+.detailsSection td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.detailsSection th {
+  background-color: #f2f2f2;
 }

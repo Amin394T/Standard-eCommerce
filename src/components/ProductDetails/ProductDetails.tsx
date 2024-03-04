@@ -30,14 +30,24 @@ function ProductDetails() {
           <div className="imageGallery">
             {images.map((image, index) => (
               <img key={index} src={image} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} />
-            ))} 
+            ))}
           </div>
         </div>
 
         <div className="detailsSection">
           <div className="title">{data?.name}</div>
-          <div className="category"></div>
-          <div className="description"></div>
+          <div className="category">{data?.category}</div>
+          <div className="description">{data?.description}</div>
+
+          <table>
+            <tr> <th>Specification</th> <th>Description</th> </tr>
+            <tr> <td>Dimensions</td> <td>10cm x 15cm</td> </tr>
+            <tr> <td>Weight</td> <td>500 grams</td> </tr>
+            <tr> <td>Material</td> <td>Plastic</td> </tr>
+            <tr> <td>Color</td> <td>Black</td> </tr>
+            <tr> <td>Power</td> <td>120V AC</td> </tr>
+            <tr> <td>Warranty</td> <td>1 year</td> </tr>
+          </table>
         </div>
 
         <div className="purchaseSection">
