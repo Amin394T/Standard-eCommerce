@@ -1,3 +1,4 @@
+import './CartItem.css'
 
 function CartItem() {
   return (

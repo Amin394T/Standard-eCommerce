@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom"
 import { CartContext, CartItem } from "../../utils/contexts/CartContext"
 import { useContext, useState } from "react"
 import useFetch from "../../utils/hooks/useFetch"
+import Rating from "../Rating/Rating"
+import UserReview from "../UserReview/UserReview"
 //import ProductCard from "../ProductCard/ProductCard"
 
 
@@ -22,6 +24,7 @@ function ProductDetails() {
   let handleImageClick = (image: string | undefined) => {
     setSelectedImage(image)
   }
+
 
   return (
     <>
@@ -66,13 +69,9 @@ function ProductDetails() {
 
 
       <div className="secondaryRow">
-        <div className="overallScore"></div>
+        <Rating />
 
-        <div className="reviewsSection">
-          <div className="comment">
-            <input className="userScore"></input>
-          </div>
-        </div>
+        <UserReview />
 
         <div className="relatedProducts">
           {/* <ProductCard /> */}
