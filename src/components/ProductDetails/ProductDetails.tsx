@@ -5,7 +5,6 @@ import { useContext, useState } from "react"
 import useFetch from "../../utils/hooks/useFetch"
 import Rating from "../Rating/Rating"
 import UserReview from "../UserReview/UserReview"
-//import ProductCard from "../ProductCard/ProductCard"
 
 
 function ProductDetails() {
@@ -70,11 +69,10 @@ function ProductDetails() {
 
       <div className="secondaryRow">
         <Rating />
-
         <UserReview />
 
         <div className="relatedProducts">
-          {/* <ProductCard /> */}
+          
         </div>
       </div>
 
