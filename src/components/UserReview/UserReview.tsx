@@ -12,7 +12,7 @@ function Review() {
             </div>
             <p className="review">Decent product, customer service was good, although the packaging could use some work. Would recommend.</p>
         </div>
-    );
+    )
 }
 
-export default Review;
+export default Review

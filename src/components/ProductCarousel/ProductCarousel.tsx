@@ -1,17 +1,20 @@
-import { useState } from 'react'
+import "./ProductCarousel.css"
 import ProductCard from '../ProductCard/ProductCard'
+import { useState } from 'react'
 import { CartItem } from "../../utils/contexts/CartContext"
 
-function ProductCarousel({ products, itemsToShow }: { products: CartItem[], itemsToShow: number }) {
-    const [startIndex, setStartIndex] = useState(0);
+function ProductCarousel({ products, itemsToShow }: { products: CartItem[] | null, itemsToShow: number }) {
+    const [startIndex, setStartIndex] = useState(0)
 
-    const goToPrevious = () => {
-        setStartIndex((prevStartIndex) => Math.max(prevStartIndex - itemsToShow, 0));
-    };
+    if (!products) return <div>No Related Products</div>
 
-    const goToNext = () => {
-        setStartIndex((prevStartIndex) => Math.min(prevStartIndex + itemsToShow, products.length - itemsToShow));
-    };
+    let goToPrevious = () => {
+        setStartIndex((prevStartIndex) => Math.max(prevStartIndex - itemsToShow, 0))
+    }
+
+    let goToNext = () => {
+        setStartIndex((prevStartIndex) => Math.min(prevStartIndex + itemsToShow, products.length - itemsToShow))
+    }
 
     return (
         <div className="product-carousel">
@@ -25,7 +28,7 @@ function ProductCarousel({ products, itemsToShow }: { products: CartItem[], item
             </div>
             <button onClick={goToNext} disabled={startIndex + itemsToShow >= products.length}>Next</button>
         </div>
-    );
-};
+    )
+}
 
-export default ProductCarousel;
+export default ProductCarousel

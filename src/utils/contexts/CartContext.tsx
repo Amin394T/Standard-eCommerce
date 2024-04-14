@@ -11,16 +11,16 @@ export type CartItem = {
 }
 
 export const CartContext = createContext<{
-   cart: CartItem[];
-   addToCart: (product: CartItem, quantity: number) => void;
-   removeFromCart: (product: CartItem) => void;
-   calculateSum: () => number;
+   cart: CartItem[]
+   addToCart: (product: CartItem, quantity: number) => void
+   removeFromCart: (product: CartItem) => void
+   calculateSum: () => number
 }>({
    cart: [],
    addToCart: () => null,
    removeFromCart: () => null,
    calculateSum: () => 0
-});
+})
 
 
 function CartProvider({ children }: PropsWithChildren) {
@@ -52,7 +52,7 @@ function CartProvider({ children }: PropsWithChildren) {
    }
 
    let calculateSum = () => {
-      return cart.reduce((accumulator, product) => accumulator + (product.price * product.quantity), 0);
+      return cart.reduce((accumulator, product) => accumulator + (product.price * product.quantity), 0)
    }
 
    return (
