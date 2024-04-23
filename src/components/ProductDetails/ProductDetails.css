@@ -78,10 +78,6 @@
   padding: 15px;
 }
 
-.secondaryRow {
-  display: flex;
-}
-
 .detailsSection > table {
   width: 90%;
   border-collapse: collapse;
@@ -101,11 +97,17 @@
 
 .secondaryRow {
   display: flex;
+  margin: auto;
+  height: fit-content;
+}
 
-  min-height: 200px;
+.reviews {
+  height: fit-content;
+  padding: 30px;
 }
 
 .primaryRow > *,
-.secondaryRow > * {
+.secondaryRow > *,
+.relatedProducts > * {
   border: solid 1px black;
 }

@@ -13,7 +13,7 @@ function ProductDetails() {
   const { data } = useFetch<CartItem>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products/' + id)
   const { data: relatedProducts } = useFetch<CartItem[]>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products')
 
-  
+
   const { addToCart } = useContext(CartContext)
   const [quantity, setQuantity] = useState(1)
 
@@ -62,7 +62,7 @@ function ProductDetails() {
         <div className="purchaseSection">
           <span className="price">{data?.price}$</span>
           <span className="discount">-20%</span>
-          <div className="deliveryInfo">5$ Delivery Fees<br/>Available Nationally<br/>Delivered in 3 Days Max</div>
+          <div className="deliveryInfo">5$ Delivery Fees<br />Available Nationally<br />Delivered in 3 Days Max<br />Returns Accepted Within 2 Weeks</div>
           <span className="stockStatus">In Stock</span>
 
           <input className="quantityInput" type="number" defaultValue="1" onChange={(e) => setQuantity(Number(e.target.value))} />
@@ -73,11 +73,16 @@ function ProductDetails() {
 
       <div className="secondaryRow">
         <Rating />
-        <UserReview />
-
-        <div className="relatedProducts">
-          <ProductCarousel {...{products: relatedProducts, itemsToShow: 5}}/>
+        <div className="reviews">
+          <UserReview />
+          <UserReview />
+          <UserReview />
         </div>
+
+      </div>
+
+      <div className="relatedProducts">
+        <ProductCarousel {...{ products: relatedProducts, itemsToShow: 5 }} />
       </div>
 
     </>
