@@ -1,0 +1,30 @@
+.product-carousel {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  transition: transform 1s ease;
+}
+
+.slide {
+  flex: 0 0 auto;
+  margin-right: 10px;
+  transition: margin 1s ease;
+}
+
+.product-carousel > button {
+  height: 30px;
+  cursor: pointer;
+  align-self: center;
+}
+
+.product-carousel > button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,4 +1,4 @@
-import "./Categories.css";
+import "./Categories.css"
 
 function Categories() {
   return (
@@ -9,7 +9,7 @@ function Categories() {
       <span>Category 4</span>
       <span>Category 5</span>
     </div>
-  );
+  )
 }
 
-export default Categories;
+export default Categories

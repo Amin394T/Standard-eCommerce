@@ -1,6 +1,6 @@
-import "./NavigationBar.css";
+import "./NavigationBar.css"
 
-function navigationBar({ toggleCartShown }: { toggleCartShown: () => void}) {
+function NavigationBar({ toggleCartShown }: { toggleCartShown: () => void }) {
   return (
     <div className="navigationBar">
 
@@ -14,7 +14,7 @@ function navigationBar({ toggleCartShown }: { toggleCartShown: () => void}) {
       </div>
 
     </div>
-  );
+  )
 }
 
-export default navigationBar;
+export default NavigationBar
