@@ -19,8 +19,8 @@ export default function Home() {
       <Categories />
       
       
-        <div className="listPage"> <Filters /> <ProductsList /> </div>
-        <div className="detailsPage"> <ProductDetails /> </div>
+        <div className="listPage"> <Filters /> {/*<ProductsList />*/} </div>
+        {/* <div className="detailsPage"> <ProductDetails /> </div> */}
         
       {cartShown && <Cart />}
     </CartProvider >

@@ -8,11 +8,11 @@ function ProductCarousel({ products, itemsToShow }: { products: CartItem[] | nul
 
     if (!products) return <div>No Related Products</div>
 
-    let goToPrevious = () => {
+    const goToPrevious = () => {
         setStartIndex((prevStartIndex) => Math.max(prevStartIndex - itemsToShow, 0))
     }
 
-    let goToNext = () => {
+    const goToNext = () => {
         setStartIndex((prevStartIndex) => Math.min(prevStartIndex + itemsToShow, products.length - itemsToShow))
     }
 

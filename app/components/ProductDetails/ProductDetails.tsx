@@ -1,15 +1,17 @@
 import "./ProductDetails.css"
-import { useParams } from "react-router-dom"
+
 import { CartContext, CartItem } from "../../utils/contexts/CartContext"
 import { useContext, useState } from "react"
 import useFetch from "../../utils/hooks/useFetch"
 import Rating from "../Rating/Rating"
 import UserReview from "../UserReview/UserReview"
 import ProductCarousel from "../ProductCarousel/ProductCarousel"
+import { useParams } from "next/navigation"
+import Image from "next/image"
 
 
 function ProductDetails() {
-  const { id } = useParams()
+  const { id } = useParams
   const { data } = useFetch<CartItem>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products/' + id)
   const { data: relatedProducts } = useFetch<CartItem[]>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products')
 
@@ -24,7 +26,7 @@ function ProductDetails() {
   ]
   const [selectedImage, setSelectedImage] = useState(images[0])
 
-  let handleImageClick = (image: string | undefined) => {
+  const handleImageClick = (image: string | undefined) => {
     setSelectedImage(image)
   }
 
@@ -34,11 +36,11 @@ function ProductDetails() {
       <div className="primaryRow">
         <div className="imagesSection">
 
-          <img src={selectedImage || data?.image} alt="Selected Image" />
+          <Image src={selectedImage || data?.image} alt="Selected Image" />
 
           <div className="imageGallery">
             {images.map((image, index) => (
-              <img key={index} src={image} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} />
+              <Image key={index} src={image} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} />
             ))}
           </div>
         </div>
