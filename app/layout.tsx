@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Standard eCommerce",
-  description: "generic eCommerce Platform",
+  description: "Generic eCommerce Platform",
 };
 
 export default function RootLayout({

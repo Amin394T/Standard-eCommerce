@@ -5,7 +5,7 @@ import Cart from "./components/Cart/Cart";
 import Categories from "./components/Categories/Categories";
 import Filters from "./components/Filters/Filters";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
-import ProductDetails from "./components/ProductDetails/ProductDetails";
+//import ProductDetails from "./components/ProductDetails/ProductDetails";
 import ProductsList from "./components/ProductsList/ProductsList";
 import CartProvider from "./utils/contexts/CartContext";
 
@@ -19,7 +19,7 @@ export default function Home() {
       <Categories />
       
       
-        <div className="listPage"> <Filters /> {/*<ProductsList />*/} </div>
+        <div className="listPage"> <Filters /> <ProductsList /> </div>
         {/* <div className="detailsPage"> <ProductDetails /> </div> */}
         
       {cartShown && <Cart />}

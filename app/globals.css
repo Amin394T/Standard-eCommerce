@@ -9,3 +9,14 @@ body,
   height: 100%;
   font-family: Cantarell, Calibri, Arial;
 }
+
+.listPage {
+  display: flex;
+  height: calc(100% - 115px);
+}
+
+.detailsPage {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 115px);
+}

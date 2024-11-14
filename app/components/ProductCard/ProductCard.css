@@ -13,6 +13,7 @@
 
 .productImage {
   height: 240px;
+  position: relative;
 }
 
 .productTitle {

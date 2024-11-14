@@ -11,7 +11,7 @@ function ProductCard({ product }: { product: CartItem }) {
 
   return (
     <div className="productCard">
-      <Image className="productImage" src={product.image} alt="PRODUCT" />
+      <div className="productImage"><Image src={product.image} alt="PRODUCT" layout="fill"/></div>
       <div className="productTitle">{product.name}</div>
       <span className="productPrice">
         <div>{product.price}$</div>
