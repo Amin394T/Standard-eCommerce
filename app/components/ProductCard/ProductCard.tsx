@@ -18,7 +18,7 @@ function ProductCard({ product }: { product: CartItem }) {
         <span>
           <input className="quantityInput" type="number" defaultValue="1" onChange={(e) => setQuantity(Number(e.target.value))} />
           <button onClick={() => addToCart(product, quantity)}>BUY</button>
-          <Link href={"/product/" + product.reference}><button>Details</button></Link>
+          <Link href={"/products/" + product.reference}><button>Details</button></Link>
         </span>
       </span>
     </div>

@@ -21,7 +21,7 @@
 }
 
 .imageGallery > img {
-  max-width: 50px;
+  
   cursor: pointer;
   margin: 0 5px;
 }
