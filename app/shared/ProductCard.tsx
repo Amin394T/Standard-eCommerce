@@ -1,6 +1,6 @@
 import "./ProductCard.css"
 import { useContext, useState } from "react"
-import { CartContext, CartItem } from "../../utils/contexts/CartContext"
+import { CartContext, CartItem } from "../utils/contexts/CartContext"
 
 import Image from "next/image"
 import Link from "next/link"

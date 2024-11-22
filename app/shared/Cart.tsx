@@ -1,6 +1,6 @@
 import "./Cart.css"
 import { useContext } from "react"
-import { CartContext } from "../../utils/contexts/CartContext"
+import { CartContext } from "../utils/contexts/CartContext"
 
 function Cart() {
   const { cart, addToCart, removeFromCart, calculateSum } = useContext(CartContext)

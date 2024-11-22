@@ -1,5 +1,5 @@
 import "./ProductCarousel.css"
-import ProductCard from '../ProductCard/ProductCard'
+import ProductCard from '../../shared/ProductCard'
 import { useState } from 'react'
 import { CartItem } from "../../utils/contexts/CartContext"
 

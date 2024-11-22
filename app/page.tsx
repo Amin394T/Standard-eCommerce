@@ -1,12 +1,12 @@
 'use client'
 
 import { useState } from "react";
-import Cart from "./components/Cart/Cart";
-import Categories from "./components/Categories/Categories";
-import Filters from "./components/Filters/Filters";
-import NavigationBar from "./components/NavigationBar/NavigationBar";
+import Cart from "./shared/Cart";
+import Categories from "./shared/Categories";
+import Filters from "./productsList/Filters";
+import NavigationBar from "./shared/NavigationBar";
 //import ProductDetails from "./components/ProductDetails/ProductDetails";
-import ProductsList from "./components/ProductsList/ProductsList";
+import ProductsList from "./productsList/ProductsList";
 import CartProvider from "./utils/contexts/CartContext";
 
 export default function Home() {

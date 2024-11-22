@@ -3,9 +3,9 @@ import "./ProductDetails.css"
 import { CartContext, CartItem } from "../../utils/contexts/CartContext"
 import { useContext, useState } from "react"
 import useFetch from "../../utils/hooks/useFetch"
-import Rating from "../Rating/Rating"
-import UserReview from "../UserReview/UserReview"
-import ProductCarousel from "../ProductCarousel/ProductCarousel"
+import Rating from "./Rating"
+import UserReview from "./UserReview"
+import ProductCarousel from "./ProductCarousel"
 //import { useParams } from "next/navigation"
 import Image from "next/image"
 
@@ -35,11 +35,11 @@ function ProductDetails( { params }: { params: { id: number}}) {
     <>
       <div className="primaryRow">
         <div className="imagesSection">
-        <div className="productImage"><Image src={selectedImage || data?.image} alt="Selected Image"  layout="fill" /></div>
+        <div className="productImage"><Image src={selectedImage || data?.image || "./placeholder.png"} alt="Selected Image"  layout="fill" /></div>
 
           <div className="imageGallery">
             {images.map((image, index) => (
-              <Image key={index} src={image} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} height={50} width={100} />
+              <Image key={index} src={image || "./placeholder.png"} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} height={50} width={100} />
             ))}
           </div>
         </div>
