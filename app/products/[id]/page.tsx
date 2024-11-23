@@ -9,10 +9,13 @@ import NavigationBar from "../../shared/NavigationBar";
 //import ProductsList from "../../components/ProductsList/ProductsList";
 import CartProvider from "../../utils/contexts/CartContext";
 import ProductDetails from "./ProductDetails";
+import NotFound from "./not-found";
 
 export default function Details({ params }: { params: { id: number}}) {
   const [cartShown, updateCartShown] = useState(false)
   const toggleCartShown = () => { updateCartShown(!cartShown) }
+
+  if (params.id > 100) return NotFound(params.id);
 
   return (
     <CartProvider>

@@ -35,11 +35,11 @@ function ProductDetails( { params }: { params: { id: number}}) {
     <>
       <div className="primaryRow">
         <div className="imagesSection">
-        <div className="productImage"><Image src={selectedImage || data?.image || "./placeholder.png"} alt="Selected Image"  layout="fill" /></div>
+        <div className="productImage"><Image src={selectedImage || data?.image || "/placeholder.png"} alt="Selected Image"  layout="fill" /></div>
 
           <div className="imageGallery">
             {images.map((image, index) => (
-              <Image key={index} src={image || "./placeholder.png"} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} height={50} width={100} />
+              <Image key={index} src={image || "/placeholder.png"} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} height={50} width={100} />
             ))}
           </div>
         </div>
