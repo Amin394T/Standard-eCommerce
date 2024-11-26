@@ -6,12 +6,10 @@ import useFetch from "../../utils/hooks/useFetch"
 import Rating from "./Rating"
 import UserReview from "./UserReview"
 import ProductCarousel from "./ProductCarousel"
-//import { useParams } from "next/navigation"
 import Image from "next/image"
 
 
 function ProductDetails( { params }: { params: { id: number}}) {
-  //const { id } = useParams
   const { data } = useFetch<CartItem>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products/' + params.id)
   const { data: relatedProducts } = useFetch<CartItem[]>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products')
 
