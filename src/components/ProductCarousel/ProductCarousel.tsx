@@ -1,5 +1,5 @@
 import "./ProductCarousel.css"
-import ProductCard from '../../shared/ProductCard'
+import ProductCard from '../ProductCard/ProductCard'
 import { useState } from 'react'
 import { CartItem } from "../../utils/contexts/CartContext"
 
@@ -8,11 +8,11 @@ function ProductCarousel({ products, itemsToShow }: { products: CartItem[] | nul
 
     if (!products) return <div>No Related Products</div>
 
-    const goToPrevious = () => {
+    let goToPrevious = () => {
         setStartIndex((prevStartIndex) => Math.max(prevStartIndex - itemsToShow, 0))
     }
 
-    const goToNext = () => {
+    let goToNext = () => {
         setStartIndex((prevStartIndex) => Math.min(prevStartIndex + itemsToShow, products.length - itemsToShow))
     }
 

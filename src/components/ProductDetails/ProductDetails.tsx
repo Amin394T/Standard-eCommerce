@@ -1,17 +1,16 @@
-'use client'
-
-import "./page.css"
+import "./ProductDetails.css"
+import { useParams } from "react-router-dom"
 import { CartContext, CartItem } from "../../utils/contexts/CartContext"
 import { useContext, useState } from "react"
 import useFetch from "../../utils/hooks/useFetch"
-import Rating from "./Rating"
-import UserReview from "./UserReview"
-import ProductCarousel from "./ProductCarousel"
-import NotFound from "./not-found";
-import Image from "next/image"
+import Rating from "../Rating/Rating"
+import UserReview from "../UserReview/UserReview"
+import ProductCarousel from "../ProductCarousel/ProductCarousel"
 
-export default function ProductDetails( { params }: { params: { id: number}}) {  
-  const { data } = useFetch<CartItem>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products/' + params.id)
+
+function ProductDetails() {
+  const { id } = useParams()
+  const { data } = useFetch<CartItem>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products/' + id)
   const { data: relatedProducts } = useFetch<CartItem[]>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products')
 
 
@@ -25,21 +24,21 @@ export default function ProductDetails( { params }: { params: { id: number}}) {
   ]
   const [selectedImage, setSelectedImage] = useState(images[0])
 
-  const handleImageClick = (image: string | undefined) => {
+  let handleImageClick = (image: string | undefined) => {
     setSelectedImage(image)
   }
 
-  if (params.id > 100) return NotFound(params.id);
 
   return (
-    <div className="detailsPage"> 
+    <>
       <div className="primaryRow">
         <div className="imagesSection">
-        <div className="productImage"><Image src={selectedImage || data?.image || "/placeholder.png"} alt="Selected Image"  layout="fill" /></div>
+
+          <img src={selectedImage || data?.image} alt="Selected Image" />
 
           <div className="imageGallery">
             {images.map((image, index) => (
-              <Image key={index} src={image || "/placeholder.png"} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} height={50} width={100} />
+              <img key={index} src={image} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} />
             ))}
           </div>
         </div>
@@ -86,6 +85,8 @@ export default function ProductDetails( { params }: { params: { id: number}}) {
         <ProductCarousel {...{ products: relatedProducts, itemsToShow: 5 }} />
       </div>
 
-    </div>
+    </>
   )
 }
+
+export default ProductDetails

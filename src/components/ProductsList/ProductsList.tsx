@@ -1,6 +1,6 @@
-import { CartItem } from "../utils/contexts/CartContext"
-import useFetch from "../utils/hooks/useFetch"
-import ProductCard from "../shared/ProductCard"
+import { CartItem } from "../../utils/contexts/CartContext"
+import useFetch from "../../utils/hooks/useFetch"
+import ProductCard from "../ProductCard/ProductCard"
 import "./ProductsList.css"
 
 function ProductsList() {

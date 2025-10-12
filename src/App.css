@@ -20,11 +20,3 @@ body,
   flex-direction: column;
   height: calc(100% - 115px);
 }
-
-.notFound {
-  display: flex;
-  justify-content: center;
-  margin-top: 30vh;
-  font-size: 30px;
-  font-weight: bold;
-}
