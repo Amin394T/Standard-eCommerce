@@ -1,4 +1,4 @@
-import "./ProductCarousel.css"
+import "/src/styles/ProductCarousel.css"
 import ProductCard from '../ProductCard/ProductCard'
 import { useState } from 'react'
 import { CartItem } from "../../utils/contexts/CartContext"

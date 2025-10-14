@@ -11,18 +11,18 @@
   border: solid 1px black;
 }
 
-.productTotalPrice {
+.product-total {
   font-size: 14px;
   padding-left: 100px;
   padding-right: 80px;
 }
 
-.cartTotalPrice {
+.cart-total {
   position: absolute;
   bottom: 10px;
   right: 20px;
 }
 
-.quantityInput {
+.quantity-input {
   width: 40px;
 }

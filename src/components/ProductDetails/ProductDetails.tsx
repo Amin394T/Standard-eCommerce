@@ -1,4 +1,4 @@
-import "./ProductDetails.css"
+import "/src/styles/ProductDetails.css"
 import { useParams } from "react-router-dom"
 import { CartContext, CartItem } from "../../utils/contexts/CartContext"
 import { useContext, useState } from "react"
@@ -31,19 +31,19 @@ function ProductDetails() {
 
   return (
     <>
-      <div className="primaryRow">
-        <div className="imagesSection">
+      <div className="primary-row">
+        <div className="images-section">
 
           <img src={selectedImage || data?.image} alt="Selected Image" />
 
-          <div className="imageGallery">
+          <div className="image-gallery">
             {images.map((image, index) => (
               <img key={index} src={image} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} />
             ))}
           </div>
         </div>
 
-        <div className="detailsSection">
+        <div className="details-section">
           <div className="title">{data?.name}</div>
           <div className="category">{data?.category}</div>
           <div className="description">{data?.description}</div>
@@ -59,19 +59,19 @@ function ProductDetails() {
           </table>
         </div>
 
-        <div className="purchaseSection">
+        <div className="purchase-section">
           <span className="price">{data?.price}$</span>
           <span className="discount">-20%</span>
-          <div className="deliveryInfo">5$ Delivery Fees<br />Available Nationally<br />Delivered in 3 Days Max<br />Returns Accepted Within 2 Weeks</div>
-          <span className="stockStatus">In Stock</span>
+          <div className="delivery-info">5$ Delivery Fees<br />Available Nationally<br />Delivered in 3 Days Max<br />Returns Accepted Within 2 Weeks</div>
+          <span className="stock-status">In Stock</span>
 
-          <input className="quantityInput" type="number" defaultValue="1" onChange={(e) => setQuantity(Number(e.target.value))} />
+          <input className="quantity-input" type="number" defaultValue="1" onChange={(e) => setQuantity(Number(e.target.value))} />
           <button onClick={() => data && addToCart(data, quantity)}>BUY</button>
         </div>
       </div>
 
 
-      <div className="secondaryRow">
+      <div className="secondary-row">
         <Rating />
         <div className="reviews">
           <UserReview />
@@ -81,7 +81,7 @@ function ProductDetails() {
 
       </div>
 
-      <div className="relatedProducts">
+      <div className="related-products">
         <ProductCarousel {...{ products: relatedProducts, itemsToShow: 5 }} />
       </div>
 

@@ -1,4 +1,4 @@
-.productsList {
+.products-list {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -8,7 +8,7 @@
     padding: 30px;
 }
 
-.flexBreak {
+.flex-break {
     flex-basis: 100%;
 }
 
@@ -22,6 +22,6 @@
     padding-top: 40px;
 }
 
-.productsList {
+.products-list {
     border: solid 1px black;
 }

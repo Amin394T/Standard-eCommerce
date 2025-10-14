@@ -1,8 +1,6 @@
-import "./Categories.css"
-
 function Categories() {
   return (
-    <div className="categoriesBar">
+    <div className="categories-bar">
       <span>Category 1</span>
       <span>Category 2</span>
       <span>Category 3</span>

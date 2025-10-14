@@ -1,14 +1,12 @@
-import "./UserReview.css"
-
 function Review() {
     return (
-        <div className="userReview">
-            <div className="metaReview">
+        <div className="user-review">
+            <div className="meta-review">
                 <span>
-                    <div className="reviewerName">Human Person</div>
-                    <div className="reviewDate">3 months ago</div>
+                    <div className="reviewer-name">Human Person</div>
+                    <div className="review-date">3 months ago</div>
                 </span>
-                <span className="reviewerRating">4 / 5</span>
+                <span className="reviewer-rating">4 / 5</span>
             </div>
             <p className="review">Decent product, customer service was good, although the packaging could use some work. Would recommend.</p>
         </div>

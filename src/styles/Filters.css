@@ -1,4 +1,4 @@
-.filtersBar {
+.filters-bar {
     max-width: 220px;
     overflow-y: scroll;
 }
@@ -7,20 +7,20 @@
     margin: 40px 10px;
 }
 
-.scoreFilter > label {
+.score-filter > label {
     display: block;
 }
 
-.typeFilter {
+.type-filter {
     display: flex;
     flex-wrap: wrap;
 }
 
-.typeFilter > p {
+.type-filter > p {
     flex-basis: 100%;
 }
 
-.priceFilter > label {
+.price-filter > label {
     display: flex;
     align-items: center;
     align-content: center;
@@ -28,6 +28,6 @@
     white-space: nowrap;
 }
 
-.filtersBar {
+.filters-bar {
     border: solid 1px black;
 }

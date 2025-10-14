@@ -1,101 +1,101 @@
-.primaryRow {
+.primary-row {
   display: flex;
   justify-content: space-between;
   min-height: 90%;
 }
 
-.imagesSection {
+.images-section {
   width: 35vw;
 }
 
-.imagesSection > img {
+.images-section > img {
   max-width: 90%;
   margin: 5%;
   margin-top: 50px;
 }
 
-.imageGallery {
+.image-gallery {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
-.imageGallery > img {
+.image-gallery > img {
   max-width: 50px;
   cursor: pointer;
   margin: 0 5px;
 }
 
-.detailsSection {
+.details-section {
   width: 50vw;
 }
 
-.detailsSection > .title {
+.details-section > .title {
   padding: 15px;
   padding-bottom: 5px;
   font-size: 24px;
   font-weight: bold;
 }
 
-.detailsSection > .category {
+.details-section > .category {
   font-size: 13.5px;
   padding-left: 15px;
 }
 
-.detailsSection > .description {
+.details-section > .description {
   font-size: 15px;
   padding: 20px;
   text-align: justify;
 }
 
-.purchaseSection {
+.purchase-section {
   width: 15vw;
   padding: 50px 10px;
   text-align: center;
 }
 
-.purchaseSection > .price {
+.purchase-section > .price {
   font-size: 24px;
   font-weight: bold;
   color: #333;
 }
 
-.purchaseSection > .discount {
+.purchase-section > .discount {
   color: #ff0000;
   padding-left: 5px;
   font-size: 15px;
 }
 
-.purchaseSection > .deliveryInfo {
+.purchase-section > .delivery-info {
   margin: 10px;
   font-size: 14px;
   color: #666;
 }
 
-.purchaseSection > .stockStatus {
+.purchase-section > .stock-status {
   font-weight: bold;
   color: #008000;
   padding: 15px;
 }
 
-.detailsSection > table {
+.details-section > table {
   width: 90%;
   border-collapse: collapse;
   margin: 10px;
 }
 
-.detailsSection th,
-.detailsSection td {
+.details-section th,
+.details-section td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
 
-.detailsSection th {
+.details-section th {
   background-color: #f2f2f2;
 }
 
-.secondaryRow {
+.secondary-row {
   display: flex;
   margin: auto;
   height: fit-content;
@@ -106,8 +106,35 @@
   padding: 30px;
 }
 
-.primaryRow > *,
-.secondaryRow > *,
-.relatedProducts > * {
+.primary-row > *,
+.secondary-row > *,
+.related-products > * {
   border: solid 1px black;
+}
+
+
+/* RATING */
+
+.rating {
+  width: 250px;
+  height: fit-content;
+  padding: 10px;
+  margin: 20px;
+}
+
+.bar-container {
+  border: solid 1px black;
+  height: 5px;
+  width: 160px;
+}
+
+.bar-container .bar {
+  background-color: #ffdb12;
+  height: 100%;
+}
+
+.bar-container .count {
+  position: relative;
+  left: 170px;
+  bottom: 15px;
 }

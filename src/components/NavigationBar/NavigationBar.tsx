@@ -1,16 +1,16 @@
-import "./NavigationBar.css"
+import "/src/styles/NavigationBar.css"
 
 function NavigationBar({ toggleCartShown }: { toggleCartShown: () => void }) {
   return (
-    <div className="navigationBar">
+    <div className="navigation-bar">
 
-      <img className="siteLogo" src="" alt="LOGO" />
+      <img className="site-logo" src="" alt="LOGO" />
 
-      <input className="searchBar" type="text" placeholder=" Search ..." />
+      <input className="search-bar" type="text" placeholder=" Search ..." />
 
-      <div className="headerButtons">
-        <img onClick={toggleCartShown} className="cartButton" src="" alt="CART" />
-        <img className="userButton" src="" alt="USER" />
+      <div className="header-buttons">
+        <img onClick={toggleCartShown} className="cart-button" src="" alt="CART" />
+        <img className="user-button" src="" alt="USER" />
       </div>
 
     </div>

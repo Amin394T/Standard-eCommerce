@@ -1,0 +1,50 @@
+.navigation-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.site-logo {
+  margin-left: 30px;
+  padding: 10px 50px; 
+}
+
+.search-bar {
+  width: 500px;
+  height: 25px;
+}
+
+.header-buttons {
+  margin-right: 30px;
+}
+
+.header-buttons > img {
+  margin-left: 20px;
+  padding: 5px;
+}
+
+.navigation-bar,
+.site-logo,
+.header-buttons > * {
+  border: solid 1px black;
+}
+
+
+.categories-bar {
+    display: flex;
+    height: 50px;
+}
+
+.categories-bar span {
+    flex-wrap: nowrap;
+    flex-grow: 1;
+    text-align: center;
+    height: 30px;
+    margin: auto 5px;
+}
+
+.categories-bar,
+.categories-bar span {
+    border: solid 1px black;
+}

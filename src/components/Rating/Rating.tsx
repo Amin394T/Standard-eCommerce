@@ -1,5 +1,3 @@
-import './Rating.css'
-
 const ratings = [
     { stars: 5, count: 32 },
     { stars: 4, count: 18 },
@@ -15,16 +13,16 @@ function Rating() {
 
     return (
         <div className="rating">
-            <div className="overallRating">Rating: {averageRating.toFixed(2)} / 5</div>
-            <div className="ratingBars">
+            <div className="overall-rating">Rating: {averageRating.toFixed(2)} / 5</div>
+            <div className="rating-bars">
                 {[5, 4, 3, 2, 1].map((stars) => {
                     const rating = ratings.find((rating) => rating.stars === stars)
                     const count = rating ? rating.count : 0
                     const percentage = (count / ratingsCount) * 100 || 0
                     return (
-                        <div key={stars} className="ratingBar">
+                        <div key={stars} className="rating-bar">
                             <div className="stars">{stars} Stars</div>
-                            <div className="barContainer">
+                            <div className="bar-container">
                                 <div className="bar" style={{ width: `${percentage}%` }}></div>
                                 <span className="count">{count}</span>
                             </div>

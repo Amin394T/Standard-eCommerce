@@ -10,12 +10,12 @@ body,
   font-family: Cantarell, Calibri, Arial;
 }
 
-.listPage {
+.list-page {
   display: flex;
   height: calc(100% - 115px);
 }
 
-.detailsPage {
+.details-page {
   display: flex;
   flex-direction: column;
   height: calc(100% - 115px);

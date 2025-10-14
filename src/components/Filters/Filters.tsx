@@ -1,10 +1,10 @@
-import "./Filters.css"
+import "/src/styles/Filters.css"
 
 function Filters() {
   return (
-    <div className="filtersBar">
+    <div className="filters-bar">
 
-      <div className="filter searchName">
+      <div className="filter search-name">
         <p> Search By Name : </p>
         <input type="text" placeholder=" Search ..." />
       </div>
@@ -20,13 +20,13 @@ function Filters() {
         <button> Invert Order  </button>
       </div>
 
-      <div className="filter priceFilter">
+      <div className="filter price-filter">
         <p> Price Range : </p>
         <label> Min :&nbsp;<input type="range" min="0" max="1000" value="0"/> </label>
         <label> Max :&nbsp;<input type="range" min="0" max="1000" value="1000"/> </label>
       </div>
       
-      <div className="filter typeFilter">
+      <div className="filter type-filter">
         <p> Product Type : </p>
         <label> <input type="checkbox" value="type1"/> Type 1 </label>
         <label> <input type="checkbox" value="type2"/> Type 2 </label>
@@ -35,7 +35,7 @@ function Filters() {
         <label> <input type="checkbox" value="type5"/> Type 5 </label>
       </div>
 
-      <div className="filter scoreFilter">
+      <div className="filter score-filter">
         <p> Minimal Score : </p>
         <label> <input type="radio" name="quality" value="great"/> Great </label>
         <label> <input type="radio" name="quality" value="average"/> Average </label>

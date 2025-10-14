@@ -1,4 +1,4 @@
-.productCard {
+.product-card {
   width: 280px;
   height: 320px;
   margin: 20px;
@@ -7,33 +7,33 @@
   flex-direction: column;
 }
 
-.productCard > * {
+.product-card > * {
   margin: 5px;
 }
 
-.productImage {
+.product-image {
   height: 240px;
 }
 
-.productTitle {
+.product-title {
   font-size: 20px;
 }
 
-.productPrice > * {
+.product-price > * {
   display: inline;
   margin: 0 5%;
 }
 
-.productPrice > button {
+.product-price > button {
   height: 25px;
   width: 80px;
 }
 
-.loadingSpinner {
+.loading-spinner {
   margin: auto;
 }
 
-.productCard,
-.productImage {
+.product-card,
+.product-image {
   border: solid 1px black;
 }

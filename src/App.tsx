@@ -1,4 +1,4 @@
-import "./App.css"
+import "./styles/App.css"
 
 import NavigationBar from "./components/NavigationBar/NavigationBar"
 import Filters from "./components/Filters/Filters"
@@ -21,8 +21,8 @@ function App() {
       <Categories />
 
       <Routes>
-        <Route path="/" element={<div className="listPage"> <Filters /> <ProductsList /> </div>} />
-        <Route path="/product/:id" element={<div className="detailsPage"> <ProductDetails /> </div>} />
+        <Route path="/" element={<div className="list-page"> <Filters /> <ProductsList /> </div>} />
+        <Route path="/product/:id" element={<div className="details-page"> <ProductDetails /> </div>} />
         <Route path="*" element={<h1>NOT FOUND</h1>} />
       </Routes>
 
