@@ -1,11 +1,11 @@
-import "./styles/App.css"
+import "./global.css"
 
 import NavigationBar from "./components/NavigationBar/NavigationBar"
-import Filters from "./components/Filters/Filters"
-import Categories from "./components/Categories/Categories"
+import Filters from "./components/ProductsList/Filters"
+import Categories from "./components/NavigationBar/Categories"
 import ProductsList from "./components/ProductsList/ProductsList"
 import Cart from "./components/Cart/Cart"
-import CartProvider from "./utils/contexts/CartContext"
+import CartProvider from "./utilities/contexts/CartContext"
 import ProductDetails from "./components/ProductDetails/ProductDetails"
 
 import { useState } from "react"
@@ -22,7 +22,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<div className="list-page"> <Filters /> <ProductsList /> </div>} />
-        <Route path="/product/:id" element={<div className="details-page"> <ProductDetails /> </div>} />
+        <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="*" element={<h1>NOT FOUND</h1>} />
       </Routes>
 

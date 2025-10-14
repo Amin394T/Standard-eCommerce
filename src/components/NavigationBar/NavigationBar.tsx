@@ -1,4 +1,4 @@
-import "/src/styles/NavigationBar.css"
+import "./NavigationBar.css"
 
 function NavigationBar({ toggleCartShown }: { toggleCartShown: () => void }) {
   return (

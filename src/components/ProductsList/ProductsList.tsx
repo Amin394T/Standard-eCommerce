@@ -1,6 +1,6 @@
-import "/src/styles/ProductsList.css"
-import { CartItem } from "../../utils/contexts/CartContext"
-import useFetch from "../../utils/hooks/useFetch"
+import "./ProductsList.css"
+import { CartItem } from "../../utilities/contexts/CartContext"
+import useFetch from "../../utilities/hooks/useFetch"
 import ProductCard from "../ProductCard/ProductCard"
 
 

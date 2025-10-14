@@ -1,10 +1,10 @@
-import "/src/styles/ProductDetails.css"
+import "./ProductDetails.css"
 import { useParams } from "react-router-dom"
-import { CartContext, CartItem } from "../../utils/contexts/CartContext"
+import { CartContext, CartItem } from "../../utilities/contexts/CartContext"
 import { useContext, useState } from "react"
-import useFetch from "../../utils/hooks/useFetch"
-import Rating from "../Rating/Rating"
-import UserReview from "../UserReview/UserReview"
+import useFetch from "../../utilities/hooks/useFetch"
+import Rating from "./Rating"
+import UserReview from "./UserReview"
 import ProductCarousel from "../ProductCarousel/ProductCarousel"
 
 
@@ -30,7 +30,7 @@ function ProductDetails() {
 
 
   return (
-    <>
+    <div className="details-page"> 
       <div className="primary-row">
         <div className="images-section">
 
@@ -85,7 +85,7 @@ function ProductDetails() {
         <ProductCarousel {...{ products: relatedProducts, itemsToShow: 5 }} />
       </div>
 
-    </>
+    </div>
   )
 }
 

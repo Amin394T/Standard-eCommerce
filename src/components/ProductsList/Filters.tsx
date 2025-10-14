@@ -1,5 +1,3 @@
-import "/src/styles/Filters.css"
-
 function Filters() {
   return (
     <div className="filters-bar">

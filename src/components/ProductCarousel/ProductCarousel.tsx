@@ -1,7 +1,7 @@
-import "/src/styles/ProductCarousel.css"
+import "./ProductCarousel.css"
 import ProductCard from '../ProductCard/ProductCard'
 import { useState } from 'react'
-import { CartItem } from "../../utils/contexts/CartContext"
+import { CartItem } from "../../utilities/contexts/CartContext"
 
 function ProductCarousel({ products, itemsToShow }: { products: CartItem[] | null, itemsToShow: number }) {
     const [startIndex, setStartIndex] = useState(0)
