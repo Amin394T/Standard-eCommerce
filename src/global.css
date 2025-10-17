@@ -1,5 +1,6 @@
-:root {
-  background-color: rgb(245, 245, 245);
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-VariableFont.ttf") format("truetype");
 }
 
 html,
@@ -7,16 +8,5 @@ body,
 #root {
   margin: 0;
   height: 100%;
-  font-family: Cantarell, Calibri, Arial;
-}
-
-.list-page {
-  display: flex;
-  height: calc(100% - 115px);
-}
-
-.details-page {
-  display: flex;
-  flex-direction: column;
-  height: calc(100% - 115px);
+  font-family: Montserrat, Verdana, sans-serif;
 }

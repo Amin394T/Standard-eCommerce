@@ -1,65 +1,117 @@
-import { PropsWithChildren, createContext, useState } from "react"
+import { PropsWithChildren, createContext, useContext, useEffect, useMemo, useReducer } from "react";
 
 export type CartItem = {
-   reference: string
-   name: string
-   quantity: number
-   price: number
-   image: string
-   category: string
-   description: string
+  reference: string;
+  price: number;
+  quantity: number;
+};
+
+
+type CartAction =
+  | { type: "ADD"; product: CartItem; quantity: number }
+  | { type: "REMOVE"; reference: string }
+  | { type: "CLEAR" }
+  | { type: "INIT"; cart: CartItem[] };
+
+function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
+  switch (action.type) {
+    case "INIT":
+      return action.cart;
+
+    case "ADD": {
+      if (action.quantity <= 0)
+         return state;
+
+      const existingIndex = state.findIndex((item) => item.reference == action.product.reference);
+
+      if (existingIndex != -1) {
+        return state.map((item, index) =>
+          index == existingIndex
+            ? { ...item, quantity: item.quantity + action.quantity }
+            : item
+        );
+      }
+      else {
+         return [...state, { ...action.product, quantity: action.quantity }];
+      }
+    }
+
+    case "REMOVE":
+      return state.filter((item) => item.reference !== action.reference);
+
+    case "CLEAR":
+      return [];
+
+    default:
+      return state;
+  }
 }
 
-export const CartContext = createContext<{
-   cart: CartItem[]
-   addToCart: (product: CartItem, quantity: number) => void
-   removeFromCart: (product: CartItem) => void
-   calculateSum: () => number
+const CartContext = createContext<{
+  cart: CartItem[];
+  addToCart: (product: CartItem, quantity: number) => void;
+  removeFromCart: (reference: string) => void;
+  clearCart: () => void;
+  calculateSum: () => number;
 }>({
-   cart: [],
-   addToCart: () => null,
-   removeFromCart: () => null,
-   calculateSum: () => 0
-})
+  cart: [],
+  addToCart: () => {},
+  removeFromCart: () => {},
+  clearCart: () => {},
+  calculateSum: () => 0,
+});
 
+export function CartProvider({ children }: PropsWithChildren) {
+  const [cart, dispatch] = useReducer(cartReducer, []);
 
-function CartProvider({ children }: PropsWithChildren) {
-   const [cart, updateCart] = useState<CartItem[]>([])
-
-   let addToCart = (product: CartItem, quantity: number): void => {
-      if (quantity > 0) {
-         const productIndex = cart.findIndex(item => item.reference === product.reference)
-
-         if (productIndex != -1) {
-            const newCart = [...cart]
-            newCart[productIndex].quantity = quantity
-            updateCart(newCart)
-         }
-         else {
-            updateCart([...cart, { ...product, quantity }])
-         }
+  useEffect(() => {
+    try {
+      const cart = localStorage.getItem("cart");
+      if (cart) {
+          dispatch({ type: "INIT", cart: JSON.parse(cart) });
       }
-   }
+    }
+    catch (error) {
+      console.error("Failed to load cart from localStorage:", error);
+    }
+  }, []);
 
-   let removeFromCart = (product: CartItem): void => {
-      const productIndex = cart.findIndex(item => item.reference === product.reference)
+  useEffect(() => {
+    try {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } catch (error) {
+      console.error("Failed to save cart to localStorage:", error);
+    }
+  }, [cart]);
 
-      if (productIndex != -1) {
-         const newCart = [...cart]
-         newCart.splice(productIndex, 1)
-         updateCart(newCart)
-      }
-   }
+  const addToCart = (product: CartItem, quantity: number) =>
+    dispatch({ type: "ADD", product, quantity });
 
-   let calculateSum = () => {
-      return cart.reduce((accumulator, product) => accumulator + (product.price * product.quantity), 0)
-   }
+  const removeFromCart = (reference: string) =>
+    dispatch({ type: "REMOVE", reference });
 
-   return (
-      <CartContext.Provider value={{ cart, addToCart, removeFromCart, calculateSum }}>
-         {children}
-      </CartContext.Provider>
-   )
+  const clearCart = () => dispatch({ type: "CLEAR" });
+
+  const calculateSum = useMemo(
+    () => () =>
+      cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    [cart]
+  );
+
+  const value = useMemo(
+    () => ({
+      cart,
+      addToCart,
+      removeFromCart,
+      clearCart,
+      calculateSum,
+    }),
+    [cart]
+  );
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
-export default CartProvider
+export function useCart() {
+  return useContext(CartContext);
+}

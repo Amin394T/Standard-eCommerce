@@ -1,3 +1,9 @@
+.details-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 115px);
+}
+
 .primary-row {
   display: flex;
   justify-content: space-between;
