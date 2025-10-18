@@ -11,8 +11,8 @@ import { Product } from "../../utilities/types/product-types"
 
 function ProductDetails() {
   const { id } = useParams()
-  const { data } = useFetch<Product>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products/' + id)
-  const { data: relatedProducts } = useFetch<Product[]>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products')
+  const { data } = useFetch<Product>(import.meta.env.VITE_API_URL + '/products/' + id)
+  const { data: relatedProducts } = useFetch<Product[]>(import.meta.env.VITE_API_URL + '/products')
 
 
   const { addToCart } = useCart()

@@ -20,8 +20,8 @@ function Filters() {
 
       <div className="filter price-filter">
         <p> Price Range : </p>
-        <label> Min :&nbsp;<input type="range" min="0" max="1000" value="0"/> </label>
-        <label> Max :&nbsp;<input type="range" min="0" max="1000" value="1000"/> </label>
+        <label> Min :&nbsp;<input type="range" min="0" max="1000" defaultValue="0"/> </label>
+        <label> Max :&nbsp;<input type="range" min="0" max="1000" defaultValue="1000"/> </label>
       </div>
       
       <div className="filter type-filter">

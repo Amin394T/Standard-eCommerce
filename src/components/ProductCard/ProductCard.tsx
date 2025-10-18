@@ -10,13 +10,16 @@ function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="product-card">
-      <img className="product-image" src={product.image} alt="PRODUCT" />
+      <img className="product-image" src={import.meta.env.VITE_IMG_URL + "/" + product.image} alt="PRODUCT" />
       <div className="product-title">{product.name}</div>
       <span className="product-price">
         <div>{product.price}$</div>
         <span>
-          <input className="quantity-input" type="number" defaultValue="1" onChange={(e) => setQuantity(Number(e.target.value))} />
-          <button onClick={() => addToCart({ ...product, quantity})}>BUY</button>
+          <input
+            className="quantity-input" type="number" defaultValue="1"
+            onChange={(e) => setQuantity(Number(e.target.value))}
+          />
+          <button onClick={() => addToCart({ ...product, quantity })}>BUY</button>
           <Link to={"/product/" + product.reference}><button>Details</button></Link>
         </span>
       </span>
