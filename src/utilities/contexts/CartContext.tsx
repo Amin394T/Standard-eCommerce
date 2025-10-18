@@ -1,17 +1,12 @@
 import { PropsWithChildren, createContext, useContext, useEffect, useMemo, useReducer } from "react";
-
-export type CartItem = {
-  reference: string;
-  price: number;
-  quantity: number;
-};
-
+import { CartItem } from "../types/product-types";
 
 type CartAction =
-  | { type: "ADD"; product: CartItem; quantity: number }
+  | { type: "ADD"; product: CartItem; }
   | { type: "REMOVE"; reference: string }
   | { type: "CLEAR" }
   | { type: "INIT"; cart: CartItem[] };
+
 
 function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
   switch (action.type) {
@@ -19,7 +14,8 @@ function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
       return action.cart;
 
     case "ADD": {
-      if (action.quantity <= 0)
+      const quantity = action.product.quantity;
+      if (quantity <= 0)
          return state;
 
       const existingIndex = state.findIndex((item) => item.reference == action.product.reference);
@@ -27,12 +23,12 @@ function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
       if (existingIndex != -1) {
         return state.map((item, index) =>
           index == existingIndex
-            ? { ...item, quantity: item.quantity + action.quantity }
+            ? { ...item, quantity }
             : item
         );
       }
       else {
-         return [...state, { ...action.product, quantity: action.quantity }];
+         return [...state, { ...action.product }];
       }
     }
 
@@ -47,9 +43,10 @@ function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
   }
 }
 
+
 const CartContext = createContext<{
   cart: CartItem[];
-  addToCart: (product: CartItem, quantity: number) => void;
+  addToCart: (product: CartItem) => void;
   removeFromCart: (reference: string) => void;
   clearCart: () => void;
   calculateSum: () => number;
@@ -60,6 +57,7 @@ const CartContext = createContext<{
   clearCart: () => {},
   calculateSum: () => 0,
 });
+
 
 export function CartProvider({ children }: PropsWithChildren) {
   const [cart, dispatch] = useReducer(cartReducer, []);
@@ -84,8 +82,8 @@ export function CartProvider({ children }: PropsWithChildren) {
     }
   }, [cart]);
 
-  const addToCart = (product: CartItem, quantity: number) =>
-    dispatch({ type: "ADD", product, quantity });
+  const addToCart = (product: CartItem) =>
+    dispatch({ type: "ADD", product });
 
   const removeFromCart = (reference: string) =>
     dispatch({ type: "REMOVE", reference });
@@ -111,6 +109,7 @@ export function CartProvider({ children }: PropsWithChildren) {
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
+
 
 export function useCart() {
   return useContext(CartContext);

@@ -1,10 +1,11 @@
 import "./ProductCard.css"
-import { useContext, useState } from "react"
-import { CartContext, CartItem } from "../../utilities/contexts/CartContext"
+import { useState } from "react"
+import { useCart } from "../../utilities/contexts/CartContext"
 import { Link } from "react-router-dom"
+import { Product } from "../../utilities/types/product-types"
 
-function ProductCard({ product }: { product: CartItem }) {
-  const { addToCart } = useContext(CartContext)
+function ProductCard({ product }: { product: Product }) {
+  const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
 
   return (
@@ -15,7 +16,7 @@ function ProductCard({ product }: { product: CartItem }) {
         <div>{product.price}$</div>
         <span>
           <input className="quantity-input" type="number" defaultValue="1" onChange={(e) => setQuantity(Number(e.target.value))} />
-          <button onClick={() => addToCart(product, quantity)}>BUY</button>
+          <button onClick={() => addToCart({ ...product, quantity})}>BUY</button>
           <Link to={"/product/" + product.reference}><button>Details</button></Link>
         </span>
       </span>

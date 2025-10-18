@@ -1,9 +1,9 @@
 import "./ProductCarousel.css"
 import ProductCard from '../ProductCard/ProductCard'
 import { useState } from 'react'
-import { CartItem } from "../../utilities/contexts/CartContext"
+import { Product } from "../../utilities/types/product-types"
 
-function ProductCarousel({ products, itemsToShow }: { products: CartItem[] | null, itemsToShow: number }) {
+function ProductCarousel({ products, itemsToShow }: { products: Product[] | null, itemsToShow: number }) {
     const [startIndex, setStartIndex] = useState(0)
 
     if (!products) return <div>No Related Products</div>
@@ -18,7 +18,7 @@ function ProductCarousel({ products, itemsToShow }: { products: CartItem[] | nul
 
     return (
         <div className="product-carousel">
-            <button onClick={goToPrevious} disabled={startIndex === 0}>Previous</button>
+            <button onClick={goToPrevious} disabled={startIndex == 0}>Previous</button>
             <div className="carousel-container">
                 {products.slice(startIndex, startIndex + itemsToShow).map((product, index) => (
                     <div key={index} className="slide">

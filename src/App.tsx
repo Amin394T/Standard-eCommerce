@@ -5,7 +5,7 @@ import NavigationBar from "./components/NavigationBar/NavigationBar"
 import ProductsList from "./components/ProductsList/ProductsList"
 import ProductDetails from "./components/ProductDetails/ProductDetails"
 import Cart from "./components/Cart/Cart"
-import CartProvider from "./utilities/contexts/CartContext"
+import { CartProvider } from "./utilities/contexts/CartContext";
 
 
 function App() {

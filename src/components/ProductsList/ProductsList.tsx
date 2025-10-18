@@ -1,12 +1,12 @@
 import "./ProductsList.css"
-import { CartItem } from "../../utilities/contexts/CartContext"
+import { Product } from "../../utilities/types/product-types"
 import useFetch from "../../utilities/hooks/useFetch"
 import ProductCard from "../ProductCard/ProductCard"
 import Filters from "./Filters"
 
 
 function ProductsList() {
-  const { data, loading } = useFetch<CartItem[]>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products')
+  const { data, loading } = useFetch<Product[]>('https://65b97a6eb71048505a8ae40f.mockapi.io/api/products')
 
   if (loading) return <div className="loading-spinner">Loading ...</div>
   
