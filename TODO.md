@@ -5,3 +5,4 @@
 - use GraphQL
 - use Redux
 - use Formik
+- improve routing

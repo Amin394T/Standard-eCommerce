@@ -2,27 +2,46 @@ import "./ProductDetails.css"
 import { useParams } from "react-router-dom"
 import { useCart } from "../../utilities/contexts/CartContext"
 import { useState } from "react"
-import useFetch from "../../utilities/hooks/useFetch"
 import Rating from "./Rating"
 import UserReview from "./UserReview"
 import ProductCarousel from "../ProductCarousel/ProductCarousel"
 import { Product } from "../../utilities/types/product-types"
+import { useQuery } from "react-query"
 
+
+async function fetchProduct(id: string | undefined) {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/products/${id}`);
+  if (!response.ok) throw new Error("Failed to fetch product");
+  return response.json();
+}
+
+async function fetchRelatedProducts(id: string | undefined) {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/products/`);
+  if (!response.ok) throw new Error("Failed to fetch related products");
+  return response.json();
+}
 
 function ProductDetails() {
   const { id } = useParams()
-  const { data } = useFetch<Product>(import.meta.env.VITE_API_URL + '/products/' + id)
-  const { data: relatedProducts } = useFetch<Product[]>(import.meta.env.VITE_API_URL + '/products')
+
+  const { data, isLoading, isError } = useQuery<Product, Error>({
+    queryKey: ["product", id],
+    queryFn: async () => fetchProduct(id),
+    enabled: !!id,
+    staleTime: 1000 * 60 * 2,
+  });
+
+  const { data: relatedProducts } = useQuery<Product[], Error>({
+    queryKey: ["relatedProducts"],
+    queryFn: async () => fetchRelatedProducts(id),
+    staleTime: 1000 * 60 * 5,
+  });
 
 
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
 
-  const images = [
-    data?.image,
-    data?.image,
-    data?.image
-  ]
+  const images = [ data?.image, data?.image, data?.image ]
   const [selectedImage, setSelectedImage] = useState(images[0])
 
   let handleImageClick = (image: string | undefined) => {
@@ -30,6 +49,9 @@ function ProductDetails() {
   }
 
 
+  if (isLoading) return <div className="loading-spinner">Loading ...</div>;
+  if (isError) return <div className="error-message"> Error loading product </div>;
+  
   return (
     <div className="details-page"> 
       <div className="primary-row">
@@ -83,7 +105,7 @@ function ProductDetails() {
       </div>
 
       <div className="related-products">
-        <ProductCarousel {...{ products: relatedProducts, itemsToShow: 5 }} />
+        <ProductCarousel {...{ products: relatedProducts || null, itemsToShow: 5 }} />
       </div>
 
     </div>
