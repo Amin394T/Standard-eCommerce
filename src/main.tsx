@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from 'react-router-dom';
-import { CartProvider } from "./utilities/contexts/CartContext.tsx";
 
 import "./global.css";
+import { CartProvider } from "./contexts/CartContext.tsx";
 import App from "./components/App.tsx";
 
 

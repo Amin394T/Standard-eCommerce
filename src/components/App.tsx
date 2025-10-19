@@ -1,7 +1,5 @@
-
 import { Routes, Route } from "react-router-dom";
-
-import { useCart } from "../utilities/contexts/CartContext";
+import { useCart } from "../contexts/CartContext";
 import NavigationBar from "./NavigationBar/NavigationBar";
 import ProductsList from "./ProductsList/ProductsList";
 import ProductDetails from "./ProductDetails/ProductDetails";

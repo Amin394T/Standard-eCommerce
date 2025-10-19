@@ -1,30 +1,33 @@
-import "./ProductDetails.css"
-import { useParams } from "react-router-dom"
-import { useCart } from "../../utilities/contexts/CartContext"
-import { useState } from "react"
-import Rating from "./Rating"
-import UserReview from "./UserReview"
-import ProductCarousel from "../ProductCarousel/ProductCarousel"
-import { Product } from "../../utilities/types/product-types"
-import { useQuery } from "react-query"
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+
+import "./ProductDetails.css";
+import { useCart } from "../../contexts/CartContext";
+import { Product } from "../../types/product-types";
+import ProductCarousel from "../ProductCarousel/ProductCarousel";
+import Rating from "./Rating";
+import UserReview from "./UserReview";
 
 
 async function fetchProduct(id: string | undefined) {
   const response = await fetch(`${import.meta.env.VITE_API_URL}/products/${id}`);
-  if (!response.ok) throw new Error("Failed to fetch product");
+  if (!response.ok) throw new Error("Failed to fetch product : " + id);
   return response.json();
 }
 
-async function fetchRelatedProducts(id: string | undefined) {
+async function fetchRelatedProducts(id?: string) {
   const response = await fetch(`${import.meta.env.VITE_API_URL}/products/`);
-  if (!response.ok) throw new Error("Failed to fetch related products");
+  if (!response.ok) throw new Error("Failed to fetch related products : " + id);
   return response.json();
 }
+
 
 function ProductDetails() {
-  const { id } = useParams()
+  const { id } = useParams();
+  const imageURL = import.meta.env.VITE_IMG_URL + "/";
 
-  const { data, isLoading, isError } = useQuery<Product, Error>({
+  const { data, isLoading, isFetching, isError } = useQuery<Product, Error>({
     queryKey: ["product", id],
     queryFn: async () => fetchProduct(id),
     enabled: !!id,
@@ -38,30 +41,31 @@ function ProductDetails() {
   });
 
 
-  const { addToCart } = useCart()
-  const [quantity, setQuantity] = useState(1)
+  const { addToCart } = useCart();
+  const [quantity, setQuantity] = useState(1);
 
-  const images = [ data?.image, data?.image, data?.image ]
-  const [selectedImage, setSelectedImage] = useState(images[0])
+  const images = [data?.image, data?.image, data?.image];
+  const [selectedImage, setSelectedImage] = useState(data?.image);
+  console.log(selectedImage)
 
   let handleImageClick = (image: string | undefined) => {
-    setSelectedImage(image)
+    setSelectedImage(image);
   }
 
 
-  if (isLoading) return <div className="loading-spinner">Loading ...</div>;
+  if (isLoading || isFetching) return <div className="loading-spinner">Loading ...</div>;
   if (isError) return <div className="error-message"> Error loading product </div>;
 
   return (
-    <div className="details-page"> 
+    <div className="details-page">
       <div className="primary-row">
         <div className="images-section">
 
-          <img src={selectedImage || data?.image} alt="Selected Image" />
+          <img src={imageURL + selectedImage || data?.image} alt="Selected Image" />
 
           <div className="image-gallery">
             {images.map((image, index) => (
-              <img key={index} src={image} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} />
+              <img key={index} src={imageURL + image} alt={`Image ${index}`} onMouseOver={() => handleImageClick(image)} />
             ))}
           </div>
         </div>
@@ -105,11 +109,11 @@ function ProductDetails() {
       </div>
 
       <div className="related-products">
-        <ProductCarousel {...{ products: relatedProducts || null, itemsToShow: 5 }} />
+        <ProductCarousel products={relatedProducts || null} itemsToShow={5} />
       </div>
 
     </div>
   )
 }
 
-export default ProductDetails
+export default ProductDetails;

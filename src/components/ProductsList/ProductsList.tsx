@@ -1,6 +1,6 @@
-import "./ProductsList.css";
 import { useQuery } from "react-query";
-import { Product } from "../../utilities/types/product-types";
+import "./ProductsList.css";
+import { Product } from "../../types/product-types";
 import ProductCard from "../ProductCard/ProductCard";
 import Filters from "./Filters";
 

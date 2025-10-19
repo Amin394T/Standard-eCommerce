@@ -1,16 +1,19 @@
-import "./ProductCard.css"
-import { useState } from "react"
-import { useCart } from "../../utilities/contexts/CartContext"
-import { Link } from "react-router-dom"
-import { Product } from "../../utilities/types/product-types"
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import "./ProductCard.css";
+import { useCart } from "../../contexts/CartContext";
+import { Product } from "../../types/product-types";
+
 
 function ProductCard({ product }: { product: Product }) {
-  const { addToCart } = useCart()
-  const [quantity, setQuantity] = useState(1)
+  const { addToCart } = useCart();
+  const [quantity, setQuantity] = useState(1);
+  const imageURL = import.meta.env.VITE_IMG_URL + "/";
 
   return (
     <div className="product-card">
-      <img className="product-image" src={import.meta.env.VITE_IMG_URL + "/" + product.image} alt="PRODUCT" />
+      <img className="product-image" src={imageURL + product.image} alt="PRODUCT" />
       <div className="product-title">{product.name}</div>
       <span className="product-price">
         <div>{product.price}$</div>
@@ -27,4 +30,4 @@ function ProductCard({ product }: { product: Product }) {
   )
 }
 
-export default ProductCard
+export default ProductCard;

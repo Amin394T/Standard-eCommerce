@@ -1,6 +1,7 @@
-import { useCart } from "../../utilities/contexts/CartContext";
-import Categories from "./Categories";
 import "./NavigationBar.css";
+import { useCart } from "../../contexts/CartContext";
+import Categories from "./Categories";
+
 
 function NavigationBar() {
   const { toggleCart } = useCart();

@@ -1,9 +1,9 @@
-import "./Cart.css"
-import { useCart } from "../../utilities/contexts/CartContext"
+import "./Cart.css";
+import { useCart } from "../../contexts/CartContext";
 
 
 function Cart() {
-  const { cart, addToCart, removeFromCart, calculateSum } = useCart()
+  const { cart, addToCart, removeFromCart, calculateSum } = useCart();
 
   return (
     <div className="cart">
@@ -23,9 +23,10 @@ function Cart() {
           <button onClick={() => removeFromCart(product.reference)}>Cancel</button>
         </div>
       )}
+      
       <div className="cart-total">Total : {calculateSum().toFixed(2)}$</div>
     </div>
   )
 }
 
-export default Cart
+export default Cart;
