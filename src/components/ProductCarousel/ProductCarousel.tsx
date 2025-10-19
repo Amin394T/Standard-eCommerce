@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import "./ProductCarousel.css";
-import { Product } from "../../types/product-types";
+import { Product } from "../../utilities/product-types";
 import ProductCard from '../ProductCard/ProductCard';
 
 

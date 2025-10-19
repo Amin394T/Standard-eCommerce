@@ -1,52 +1,40 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
+import axios from "axios";
 
 import "./ProductDetails.css";
 import { useCart } from "../../contexts/CartContext";
-import { Product } from "../../types/product-types";
+import { Product } from "../../utilities/product-types";
 import ProductCarousel from "../ProductCarousel/ProductCarousel";
 import Rating from "./Rating";
 import UserReview from "./UserReview";
 
 
-async function fetchProduct(id: string | undefined) {
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/products/${id}`);
-  if (!response.ok) throw new Error("Failed to fetch product : " + id);
-  return response.json();
-}
-
-async function fetchRelatedProducts(id?: string) {
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/products/`);
-  if (!response.ok) throw new Error("Failed to fetch related products : " + id);
-  return response.json();
-}
-
-
 function ProductDetails() {
   const { id } = useParams();
   const imageURL = import.meta.env.VITE_IMG_URL + "/";
+  const dataURL = import.meta.env.VITE_API_URL;
 
-  const { data, isLoading, isFetching, isError } = useQuery<Product, Error>({
+  const { data: product, isLoading, isFetching, isError } = useQuery<Product, Error>({
     queryKey: ["product", id],
-    queryFn: async () => fetchProduct(id),
+    queryFn: () => axios.get(dataURL + "/products/" + id).then(result => result.data),
     enabled: !!id,
     staleTime: 1000 * 60 * 2,
   });
 
   const { data: relatedProducts } = useQuery<Product[], Error>({
     queryKey: ["relatedProducts"],
-    queryFn: async () => fetchRelatedProducts(id),
-    staleTime: 1000 * 60 * 5,
+    queryFn: () => axios.get(dataURL + "/products/").then(result => result.data),
+    staleTime: 1000 * 60 * 15,
   });
 
 
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
 
-  const images = [data?.image, data?.image, data?.image];
-  const [selectedImage, setSelectedImage] = useState(data?.image);
-  console.log(selectedImage)
+  const images = [product?.image, product?.image, product?.image];
+  const [selectedImage, setSelectedImage] = useState(product?.image);
 
   let handleImageClick = (image: string | undefined) => {
     setSelectedImage(image);
@@ -61,7 +49,7 @@ function ProductDetails() {
       <div className="primary-row">
         <div className="images-section">
 
-          <img src={imageURL + selectedImage || data?.image} alt="Selected Image" />
+          <img src={imageURL + selectedImage || product?.image} alt="Selected Image" />
 
           <div className="image-gallery">
             {images.map((image, index) => (
@@ -71,9 +59,9 @@ function ProductDetails() {
         </div>
 
         <div className="details-section">
-          <div className="title">{data?.name}</div>
-          <div className="category">{data?.category}</div>
-          <div className="description">{data?.description}</div>
+          <div className="title">{product?.name}</div>
+          <div className="category">{product?.category}</div>
+          <div className="description">{product?.description}</div>
 
           <table>
             <tr> <th>Specification</th> <th>Description</th> </tr>
@@ -87,13 +75,13 @@ function ProductDetails() {
         </div>
 
         <div className="purchase-section">
-          <span className="price">{data?.price}$</span>
+          <span className="price">{product?.price}$</span>
           <span className="discount">-20%</span>
           <div className="delivery-info">5$ Delivery Fees<br />Available Nationally<br />Delivered in 3 Days Max<br />Returns Accepted Within 2 Weeks</div>
           <span className="stock-status">In Stock</span>
 
           <input className="quantity-input" type="number" defaultValue="1" onChange={(e) => setQuantity(Number(e.target.value))} />
-          <button onClick={() => data && addToCart({ ...data, quantity })}>BUY</button>
+          <button onClick={() => product && addToCart({ ...product, quantity })}>BUY</button>
         </div>
       </div>
 

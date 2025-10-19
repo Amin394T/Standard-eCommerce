@@ -1,5 +1,5 @@
 import { PropsWithChildren, createContext, useContext, useEffect, useMemo, useReducer, useState } from "react";
-import { CartItem } from "../types/product-types";
+import { CartItem } from "../utilities/product-types";
 
 type CartAction =
   | { type: "ADD"; product: CartItem; }
