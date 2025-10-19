@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useContext, useEffect, useMemo, useReducer } from "react";
+import { PropsWithChildren, createContext, useContext, useEffect, useMemo, useReducer, useState } from "react";
 import { CartItem } from "../types/product-types";
 
 type CartAction =
@@ -22,9 +22,7 @@ function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
 
       if (existingIndex != -1) {
         return state.map((item, index) =>
-          index == existingIndex
-            ? { ...item, quantity }
-            : item
+          index == existingIndex ? { ...item, quantity } : item
         );
       }
       else {
@@ -33,7 +31,7 @@ function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
     }
 
     case "REMOVE":
-      return state.filter((item) => item.reference !== action.reference);
+      return state.filter((item) => item.reference != action.reference);
 
     case "CLEAR":
       return [];
@@ -50,30 +48,36 @@ const CartContext = createContext<{
   removeFromCart: (reference: string) => void;
   clearCart: () => void;
   calculateSum: () => number;
+  visible: boolean;
+  toggleCart: (visible?: boolean) => void;
 }>({
   cart: [],
   addToCart: () => {},
   removeFromCart: () => {},
   clearCart: () => {},
   calculateSum: () => 0,
+  visible: false,
+  toggleCart: () => {},
 });
 
 
 export function CartProvider({ children }: PropsWithChildren) {
   const [cart, dispatch] = useReducer(cartReducer, []);
+  const [visible, setVisible] = useState(false);
 
+  // load cached cart from local storage
   useEffect(() => {
     try {
       const cart = localStorage.getItem("cart");
-      if (cart) {
-          dispatch({ type: "INIT", cart: JSON.parse(cart) });
-      }
+      if (cart)
+        dispatch({ type: "INIT", cart: JSON.parse(cart) });
     }
     catch (error) {
       console.error("Failed to load cart from localStorage:", error);
     }
   }, []);
 
+  // save cart to local storage cache
   useEffect(() => {
     try {
       localStorage.setItem("cart", JSON.stringify(cart));
@@ -81,6 +85,7 @@ export function CartProvider({ children }: PropsWithChildren) {
       console.error("Failed to save cart to localStorage:", error);
     }
   }, [cart]);
+
 
   const addToCart = (product: CartItem) =>
     dispatch({ type: "ADD", product });
@@ -96,15 +101,13 @@ export function CartProvider({ children }: PropsWithChildren) {
     [cart]
   );
 
+  const toggleCart = (visible?: boolean) =>
+    setVisible((prev) => (typeof visible == "boolean" ? visible : !prev));
+
+
   const value = useMemo(
-    () => ({
-      cart,
-      addToCart,
-      removeFromCart,
-      clearCart,
-      calculateSum,
-    }),
-    [cart]
+    () => ({ cart, addToCart, removeFromCart, clearCart, calculateSum, visible, toggleCart }),
+    [cart, visible]
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

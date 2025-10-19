@@ -51,7 +51,7 @@ function ProductDetails() {
 
   if (isLoading) return <div className="loading-spinner">Loading ...</div>;
   if (isError) return <div className="error-message"> Error loading product </div>;
-  
+
   return (
     <div className="details-page"> 
       <div className="primary-row">
