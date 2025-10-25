@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
-import axios from "axios";
 
 import "./ProductDetails.css";
 import { useCart } from "../../contexts/CartContext";
+import api from "../../utilities/axios-interceptor";
 import { Product } from "../../utilities/product-types";
 import ProductCarousel from "../ProductCarousel/ProductCarousel";
 import Rating from "./Rating";
@@ -14,18 +14,17 @@ import UserReview from "./UserReview";
 function ProductDetails() {
   const { id } = useParams();
   const imageURL = import.meta.env.VITE_IMG_URL + "/";
-  const dataURL = import.meta.env.VITE_API_URL;
 
   const { data: product, isLoading, isFetching, isError } = useQuery<Product, Error>({
     queryKey: ["product", id],
-    queryFn: () => axios.get(dataURL + "/products/" + id).then(result => result.data),
+    queryFn: () => api.get("/products/" + id),
     enabled: !!id,
     staleTime: 1000 * 60 * 2,
   });
 
   const { data: relatedProducts } = useQuery<Product[], Error>({
     queryKey: ["relatedProducts"],
-    queryFn: () => axios.get(dataURL + "/products/").then(result => result.data),
+    queryFn: () => api.get("/products/"),
     staleTime: 1000 * 60 * 15,
   });
 

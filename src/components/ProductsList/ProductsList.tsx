@@ -1,18 +1,16 @@
 import { useQuery } from "react-query";
-import axios from "axios";
 
 import "./ProductsList.css";
+import api from "../../utilities/axios-interceptor";
 import { Product } from "../../utilities/product-types";
 import ProductCard from "../ProductCard/ProductCard";
 import Filters from "./Filters";
 
 
 function ProductsList() {
-  const dataURL = import.meta.env.VITE_API_URL;
-
   const { data: products, isLoading, isFetching, isError } = useQuery<Product[], Error>({
     queryKey: ["products"],
-    queryFn: () => axios.get(dataURL + "/products").then(result => result.data),
+    queryFn: () => api.get("/products"),
     staleTime: 1000 * 60 * 2
   });
 
