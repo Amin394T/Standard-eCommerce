@@ -87,11 +87,8 @@ function ProductDetails() {
 
       <div className="secondary-row">
         <Rating />
-        <div className="reviews">
-          <UserReview />
-          <UserReview />
-          <UserReview />
-        </div>
+        
+          <UserReview product={product?.reference}/>
 
       </div>
 

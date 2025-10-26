@@ -20,3 +20,4 @@
 - dark theme
 - optimistic updates
 - secure API with JWT
++ validation for other entities

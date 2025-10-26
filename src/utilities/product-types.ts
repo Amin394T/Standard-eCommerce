@@ -11,6 +11,17 @@ export type Product = {
   status: string;
 };
 
+export type Review = {
+  product: string;
+  user: {
+    username: string;
+    city: string;
+  };
+  rating: number;
+  comment: string;
+  date: Date;
+};
+
 export type CartItem = {
   reference: string;
   name: string;
