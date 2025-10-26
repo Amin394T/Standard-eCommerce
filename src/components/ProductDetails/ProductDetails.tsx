@@ -7,7 +7,6 @@ import { useCart } from "../../contexts/CartContext";
 import api from "../../utilities/axios-interceptor";
 import { Product } from "../../utilities/product-types";
 import ProductCarousel from "../ProductCarousel/ProductCarousel";
-import Rating from "./Rating";
 import UserReview from "./UserReview";
 
 
@@ -86,10 +85,7 @@ function ProductDetails() {
 
 
       <div className="secondary-row">
-        <Rating />
-        
-          <UserReview product={product?.reference}/>
-
+        <UserReview product={product?.reference}/>
       </div>
 
       <div className="related-products">

@@ -1,14 +1,6 @@
-const ratings = [
-  { stars: 5, count: 32 },
-  { stars: 4, count: 18 },
-  { stars: 3, count: 5 },
-  { stars: 2, count: 2 },
-  { stars: 1, count: 9 },
-];
-
-function Rating() {
-  const ratingsCount = ratings.reduce((acc, rating) => acc + rating.count, 0);
-  const averageRating = ratings.reduce((acc, rating) => acc + rating.stars * rating.count, 0) / ratingsCount;
+function Rating({ ratingsCount }: { ratingsCount: { rating: number; count: number }[] }) {
+  const totalRatings = ratingsCount.reduce((acc, { count }) => acc + count, 0);
+  const averageRating = ratingsCount.reduce((acc, { rating, count }) => acc + rating * count, 0) / totalRatings;
 
   return (
     <div className="rating">
@@ -16,10 +8,10 @@ function Rating() {
       <div className="rating-bars">
 
         {[5, 4, 3, 2, 1].map((stars) => {
-          const rating = ratings.find((rating) => rating.stars === stars);
+          const rating = ratingsCount.find((rating) => rating.rating === stars);
           const count = rating ? rating.count : 0;
-          const percentage = (count / ratingsCount) * 100 || 0;
-          
+          const percentage = (count / totalRatings) * 100 || 0;
+
           return (
             <div key={stars} className="rating-bar">
               <div className="stars">{stars} Stars</div>
