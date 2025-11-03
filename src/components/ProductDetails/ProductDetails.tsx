@@ -31,6 +31,7 @@ function ProductDetails() {
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
 
+  // TODO: Replace with actual multiple images when available
   const images = [product?.image, product?.image, product?.image];
   const [selectedImage, setSelectedImage] = useState(product?.image);
 
@@ -47,7 +48,7 @@ function ProductDetails() {
       <div className="primary-row">
         <div className="images-section">
 
-          <img src={imageURL + selectedImage || product?.image} alt="Selected Image" />
+          <img src={imageURL + (selectedImage || product?.image)} alt="Selected Image" />
 
           <div className="image-gallery">
             {images.map((image, index) => (
@@ -61,22 +62,37 @@ function ProductDetails() {
           <div className="category">{product?.category}</div>
           <div className="description">{product?.description}</div>
 
-          <table>
-            <tr> <th>Specification</th> <th>Description</th> </tr>
-            <tr> <td>Dimensions</td> <td>10cm x 15cm</td> </tr>
-            <tr> <td>Weight</td> <td>500 grams</td> </tr>
-            <tr> <td>Material</td> <td>Plastic</td> </tr>
-            <tr> <td>Color</td> <td>Black</td> </tr>
-            <tr> <td>Power</td> <td>120V AC</td> </tr>
-            <tr> <td>Warranty</td> <td>1 year</td> </tr>
-          </table>
+          {product?.specification && Object.keys(product.specification).length > 0 ? (
+            <table>
+              <thead>
+                <tr>
+                  <th>Specification</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(product.specification).map(([specKey, specValue]) => (
+                  <tr key={specKey}>
+                    <td>{specKey}</td>
+                    <td>
+                      {specValue === null || specValue === undefined
+                        ? "-"
+                        : typeof specValue === "object"
+                        ? JSON.stringify(specValue)
+                        : String(specValue)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : null}
         </div>
 
         <div className="purchase-section">
-          <span className="price">{product?.price}$</span>
-          <span className="discount">-20%</span>
-          <div className="delivery-info">5$ Delivery Fees<br />Available Nationally<br />Delivered in 3 Days Max<br />Returns Accepted Within 2 Weeks</div>
-          <span className="stock-status">In Stock</span>
+          <span className="price">{`${product?.price}$`}</span>
+          <span className="discount">{`-${product?.discount}%`}</span>
+          <div className="delivery-info">{`${product?.delivery.cost}$ Delivery Fees`}<br />{`Available in ${product?.delivery.range}`}<br />{`Delivered in ${product?.delivery.time} Max`}<br />{`Returns Accepted Within ${product?.policy.period}`}</div>
+          <span className="stock-status">{product?.status.replace(/-/g, " ").toUpperCase()}</span>
 
           <input className="quantity-input" type="number" defaultValue="1" onChange={(e) => setQuantity(Number(e.target.value))} />
           <button onClick={() => product && addToCart({ ...product, quantity })}>BUY</button>

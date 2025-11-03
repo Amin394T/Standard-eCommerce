@@ -8,7 +8,20 @@ export type Product = {
   stock: number;
   owner: string;
   date: Date;
-  status: string;
+  type: string;
+  status: "in-stock" | "sold-out" | "deleted" | "on-hold" | "hidden";
+  discount: number;
+  specification: { [key: string]: string | number | boolean | null | undefined | object  };
+  delivery: {
+    range: string;
+    cost: number;
+    time: string;
+  };
+  policy: {
+    type: "exchange" | "refund";
+    method: "drop-off" | "pick-up" | "in-store" | "none";
+    period: string;
+  };
 };
 
 export type Review = {
